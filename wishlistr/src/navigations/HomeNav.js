@@ -6,10 +6,9 @@ import ROUTES from ".";
 const HomeNav = () => {
   const Stack = createStackNavigator();
   return (
-    // <Stack.Navigator>
-    //   {/* <Stack.Screen name={ROUTES.HOME.HOME.HOME} component={h} /> */}
-    // </Stack.Navigator>
-    <View></View>
+    <Stack.Navigator>
+      <Stack.Screen name={ROUTES.HOME.HOME.HOME} component={Home} />
+    </Stack.Navigator>
   );
 };
 

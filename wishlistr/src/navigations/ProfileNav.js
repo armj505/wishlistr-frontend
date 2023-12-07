@@ -3,13 +3,16 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
 
+const Stack = createStackNavigator();
 const ProfileNav = () => {
-  const Stack = createStackNavigator();
   return (
-    // <Stack.Navigator>
-    //   {/* <Stack.Screen name={ROUTES.PROFILE.PROFILE.PROFILE} component={h} /> */}
-    // </Stack.Navigator>
-    <View></View>
+    <Stack.Navigator>
+      <Stack.Screen name={ROUTES.PROFILE.PROFILE.PROFILE} component={Profile} />
+      <Stack.Screen
+        name={ROUTES.PROFILE.PROFILE.EDITPROFILE}
+        component={EditProfile}
+      />
+    </Stack.Navigator>
   );
 };
 
