@@ -32,9 +32,9 @@ const ROUTES = {
     },
   },
   AUTH: {
-    AUTH_NAVIGATOR: "auth navigator",
     AUTH: {
-      AUTH: "auth",
+      Login: "login",
+      Register: "register",
     },
   },
 };

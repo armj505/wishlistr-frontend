@@ -14,7 +14,7 @@ const ExploreNav = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name={ROUTES.EXPLORE.EXPLORE.EXPLORE} component={Explore} />
-      <Stack.Screen name={ROUTES.EXPLORE.EXPLORE.BRAND} components={Brand} />
+      {/* <Stack.Screen name={ROUTES.EXPLORE.EXPLORE.BRAND} components={Brand} /> */}
       <Stack.Screen
         name={ROUTES.EXPLORE.EXPLORE.LISTBRAND}
         component={ListBrands}

@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import MainNav from "./src/navigations/MainNav";
 import { useState } from "react";
+import AuthNav from "./src/navigations/AuthNav";
 
 export default function App() {
   const [user, setUser] = useState(false);
@@ -11,7 +12,8 @@ export default function App() {
   return (
     <QueryClientProvider client={new QueryClient()}>
       <NavigationContainer>
-        <MainNav />
+        {/* <MainNav /> */}
+        <AuthNav />
       </NavigationContainer>
     </QueryClientProvider>
   );

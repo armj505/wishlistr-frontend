@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "https://hammerhead-app-kz3f9.ondigitalocean.app/";
+const BASE_URL = "https://hammerhead-app-kz3f9.ondigitalocean.app";
 const instance = axios.create({
-  baseUrl: BASE_URL,
+  baseURL: BASE_URL,
 });
 
 instance.interceptors.request.use((config) => {
