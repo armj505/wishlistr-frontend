@@ -26,6 +26,9 @@ const ROUTES = {
     PROFILE_NAVIGATOR: "profile navigator",
     PROFILE: {
       PROFILE: "profile",
+      EDITPROFILE: "edit profile",
+      MYGIFTS: "my gifts",
+      SETTINGS: "settings",
     },
   },
   AUTH: {
