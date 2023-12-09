@@ -16,7 +16,8 @@ const Register = () => {
   const { mutate } = useMutation({
     mutationKey: ["register"],
     mutationFn: () =>
-      register(firstName, lastName, email, phoneNumber, password),
+      register(email, phoneNumber, firstName, lastName, password),
+
     onSuccess: () => {
       navigation.navigate(ROUTES.AUTH.AUTH.Login);
     },

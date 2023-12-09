@@ -1,90 +1,107 @@
-import {
-  StyleSheet,
-  Switch,
-  Text,
-  View,
-  TextInput,
-  Button,
-} from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import React, { useContext, useState } from "react";
+import { TextInput } from "react-native-gesture-handler";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../../apis/auth";
 import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigations";
+import UserContext from "../../context/UserContext";
 
 const Login = () => {
-  const [isEmaileLogin, setIsEmailLogin] = useState(true);
-  const navigation = useNavigation();
-  const handleNavigation = () => {
-    navigation.navigate(ROUTES.AUTH.AUTH.Register);
-  };
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <Text>{isEmaileLogin ? "Email" : "Phone number"}</Text>
-      <TextInput
-        style={styles.input}
-        placeholder={isEmaileLogin ? "Email" : "Phone number"}
-      />
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user } = useContext(UserContext);
+  const navigate = useNavigation();
 
-      <Text>Password</Text>
-      <TextInput style={styles.input} placeholder="Password" secureTextEntry />
-      <View style={styles.toggleContainer}>
-        <Text style={styles.toggleLabel}>Sign in with:</Text>
-        <Switch
-          value={isEmaileLogin}
-          onValueChange={() => setIsEmailLogin(!isEmaileLogin)}
-        />
-        <Text style={styles.toggleLabel}>
-          {isEmaileLogin ? "Email" : "Phone number"}
-        </Text>
-      </View>
+  const { mutate, error } = useMutation({
+    mutationKey: ["logIn"],
+    mutationFn: () => login(email, password),
+  });
+  return (
+    <View
+      style={{
+        flex: 1,
+        flexDirection: "column",
+
+        alignItems: "center",
+        paddingVertical: 10,
+      }}
+    >
       <View
         style={{
-          width: "100%",
-          justifyContent: "center",
-          gap: 10,
+          paddingVertical: 10,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          borderWidth: 1,
+          width: "90%",
         }}
       >
-        <Button title="Login" style={styles.button} />
-        <Button
-          title="register"
-          style={styles.button}
-          onPress={handleNavigation}
+        <Text>{JSON.stringify(user)}</Text>
+        <Text style={{ fontSize: 20, paddingVertical: 10 }}>Login</Text>
+        <Text style={{ fontSize: 15, paddingVertical: 10 }}>
+          Email or Phone number
+        </Text>
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => {
+            setEmail(text);
+          }}
+          style={{
+            borderWidth: 1,
+            width: "60%",
+            height: 35,
+            justifyContent: "center",
+          }}
         />
+        <Text style={{ fontSize: 15, paddingVertical: 10 }}>Password</Text>
+        <TextInput
+          placeholder="Password"
+          secureTextEntry
+          value={password}
+          onChangeText={(text) => {
+            setPassword(text);
+          }}
+          style={{
+            borderWidth: 1,
+            width: "60%",
+            height: 35,
+            justifyContent: "center",
+          }}
+        />
+        <TouchableOpacity
+          onPress={mutate}
+          style={{
+            backgroundColor: "#3498db",
+            padding: 10,
+            borderRadius: 5,
+
+            marginTop: 10,
+          }}
+        >
+          <Text style={{ color: "#fff", fontSize: 16 }}>login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigate.navigate(ROUTES.AUTH.AUTH.Register);
+          }}
+          style={{
+            backgroundColor: "#3498db",
+            padding: 10,
+            borderRadius: 5,
+
+            marginTop: 10,
+          }}
+        >
+          <Text style={{ color: "#fff", fontSize: 16 }}>Register</Text>
+        </TouchableOpacity>
+        <Text>{error?.response?.data}</Text>
       </View>
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    paddingHorizontal: 16,
-
-    marginTop: 16,
-  },
-  title: {
-    paddingVertical: 10,
-    fontSize: 25,
-  },
-
-  input: {
-    height: 40,
-    width: "100%",
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 10,
-  },
-
-  toggleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  toggleLabel: {
-    marginLeft: 10,
-  },
-});
 
 export default Login;
+
+const styles = StyleSheet.create({});

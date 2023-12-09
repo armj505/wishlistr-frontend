@@ -1,14 +1,26 @@
 import { instance } from ".";
+import { saveToken } from "./store";
 
 const register = async (email, phoneNumber, firstName, lastName, password) => {
-  const response = await instance.post("/api/auth/register", {
+  const response = await instance.post("/auth/register", {
     email,
     phoneNumber,
-    firstName,
-    lastName,
+    name: { firstName, lastName },
     password,
   });
+
   return response.data;
 };
 
-export { register };
+const login = async (email, password) => {
+  const response = await instance.post("/auth/signIn", {
+    email,
+    password,
+  });
+  if (response?.data?.token) {
+    await saveToken(response.data.token);
+  }
+  return response.data;
+};
+
+export { register, login };
