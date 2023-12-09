@@ -1,16 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = "https://hammerhead-app-kz3f9.ondigitalocean.app";
+const BASE_URL = "http://192.168.8.106:7000/api";
+
 const instance = axios.create({
   baseURL: BASE_URL,
-});
-
-instance.interceptors.request.use((config) => {
-  // const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
 });
 
 export { instance, BASE_URL };

@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
+import Profile from "../screens/profile/Profile";
+import EditProfile from "../screens/profile/EditProfile";
 
 const Stack = createStackNavigator();
 const ProfileNav = () => {
