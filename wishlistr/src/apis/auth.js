@@ -12,9 +12,9 @@ const register = async (email, phoneNumber, firstName, lastName, password) => {
   return response.data;
 };
 
-const login = async (email, password) => {
+const login = async (emailOrPhone, password) => {
   const response = await instance.post("/auth/signIn", {
-    email,
+    emailOrPhone,
     password,
   });
   if (response?.data?.token) {
