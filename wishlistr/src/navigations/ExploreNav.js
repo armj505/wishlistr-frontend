@@ -12,7 +12,7 @@ import ROUTES from ".";
 const ExploreNav = () => {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={ROUTES.EXPLORE.EXPLORE.EXPLORE} component={Explore} />
       {/* <Stack.Screen name={ROUTES.EXPLORE.EXPLORE.BRAND} components={Brand} /> */}
       <Stack.Screen

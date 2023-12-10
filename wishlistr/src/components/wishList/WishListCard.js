@@ -9,15 +9,16 @@ const WishListCard = ({ listTitle }) => {
       <View
         style={{
           alignItems: "center",
-
           flexDirection: "row",
-          height: 100,
-          // backgroundColor: "green",
+          height: 96,
+          borderRadius: 32,
+          overflow: "hidden",
+          marginTop: 24,
         }}
       >
         <View
           style={{
-            // backgroundColor: "tomato",
+            backgroundColor: "tomato",
             width: "20%",
             height: "100%",
             justifyContent: "center",
@@ -26,15 +27,16 @@ const WishListCard = ({ listTitle }) => {
         >
           <View
             style={{
-              width: 50,
-              height: 50,
-              backgroundColor: "black",
+              width: 40,
+              height: 40,
+              backgroundColor: "white",
               borderRadius: 50,
               justifyContent: "center",
               alignItems: "center",
+              overflow: "hidden",
             }}
           >
-            <Icon name="trash" color="white" size={30} />
+            <Text style={{ fontSize: 24 }}>🔄️</Text>
           </View>
         </View>
         <View
@@ -51,7 +53,7 @@ const WishListCard = ({ listTitle }) => {
               width: "100%",
               height: "100%",
               position: "absolute",
-              backgroundColor: "#00000080",
+              backgroundColor: "#00000090",
               zIndex: 2,
               justifyContent: "center",
               alignItems: "flex-start",

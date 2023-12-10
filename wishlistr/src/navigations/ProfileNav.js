@@ -8,7 +8,7 @@ import EditProfile from "../screens/profile/EditProfile";
 const Stack = createStackNavigator();
 const ProfileNav = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={ROUTES.PROFILE.PROFILE.PROFILE} component={Profile} />
       <Stack.Screen
         name={ROUTES.PROFILE.PROFILE.EDITPROFILE}
