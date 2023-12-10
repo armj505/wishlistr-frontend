@@ -7,7 +7,7 @@ import Home from "../screens/home/Home";
 const HomeNav = () => {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={ROUTES.HOME.HOME.Home} component={Home} />
     </Stack.Navigator>
   );

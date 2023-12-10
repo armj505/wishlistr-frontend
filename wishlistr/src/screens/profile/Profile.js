@@ -3,12 +3,14 @@ import React from "react";
 import { deleteToken } from "../../apis/store";
 import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigations";
+import Title from "../../components/ui/Title";
+import Screen from "../../components/ui/Screen";
 
 const Profile = () => {
   const navigate = useNavigation();
   return (
-    <View>
-      <Text>Profile</Text>
+    <Screen>
+      <Title title="My Profile" />
 
       <Button
         title="SignOut"
@@ -16,7 +18,7 @@ const Profile = () => {
           await deleteToken();
         }}
       />
-    </View>
+    </Screen>
   );
 };
 
