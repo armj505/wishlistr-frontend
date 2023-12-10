@@ -1,15 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
+import Wishlist from "../screens/wish_list/Wishlist";
 
 const WishlistNav = () => {
   const Stack = createStackNavigator();
+
   return (
-    // <Stack.Navigator>
-    //   {/* <Stack.Screen name={ROUTES.WISHLIST.WISHLIST.WISHLIST} component={h} /> */}
-    // </Stack.Navigator>
-    <View></View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name={ROUTES.WISHLIST.WISHLIST.WISHLIST} // Use a simple string for the name
+        component={Wishlist}
+      />
+    </Stack.Navigator>
   );
 };
 
