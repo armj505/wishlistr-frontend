@@ -1,112 +1,198 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useMutation } from "@tanstack/react-query";
 import { register } from "../../apis/auth";
 import { useNavigation } from "@react-navigation/native"; // Import the useNavigation hook
 import ROUTES from "../../navigations";
+import { useTheme } from "react-native-paper";
+import { TextInput } from "react-native-paper";
+import { Text } from "react-native-paper";
+import { Button } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 const Register = () => {
+  const theme = useTheme();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
   const navigation = useNavigation();
+
   const { mutate } = useMutation({
     mutationKey: ["register"],
     mutationFn: () =>
       register(email, phoneNumber, firstName, lastName, password),
 
-    onSuccess: () => {
-      navigation.navigate(ROUTES.AUTH.AUTH.Login);
+    onSuccess: async () => {
+      Toast.show({
+        type: "success",
+        text1: "Registration Successful",
+        text2: `Verification email sent to ${email}`,
+      });
+      setTimeout(() => {
+        navigation.navigate(ROUTES.AUTH.AUTH.Login);
+      }, 3000);
     },
   });
+  const handleRegister = () => {
+    if (!firstName || !lastName || !email || !phoneNumber || !password) {
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Validation error",
+        text2: "All fields are required",
+        visibilityTime: 3000,
+      });
+      return;
+    }
+
+    mutate();
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
+    <View style={{ flex: 1, backgroundColor: theme.colors.primary }}>
+      <View
+        style={{
+          width: "100%",
+          height: "20%",
+          backgroundColor: theme.colors.primary,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: theme.colors.surface, fontSize: 25 }}>
+          WishLister
+        </Text>
+      </View>
+      <View
+        style={{
+          width: "100%",
+          height: "80%",
+          backgroundColor: theme.colors.surface,
+          borderTopStartRadius: 10,
+          borderTopEndRadius: 80,
+          borderWidth: 6,
 
-      <Text style={styles.inputLabel}>First Name</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="First Name"
-        value={firstName}
-        onChangeText={(text) => setFirstName(text)}
-      />
+          borderColor: theme.colors.surfaceDisabled,
+          borderStyle: "solid",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+        <Text
+          style={{
+            color: theme.colors.primary,
 
-      <Text style={styles.inputLabel}>Last Name</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Last Name"
-        value={lastName}
-        onChangeText={(text) => setLastName(text)}
-      />
+            alignSelf: "flex-start",
+            paddingVertical: 30,
+            paddingLeft: 10,
+          }}
+          variant="titleLarge"
+        >
+          Register
+        </Text>
+        <View
+          style={{
+            width: "100%",
+            gap: 10,
 
-      <Text style={styles.inputLabel}>Email</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
+            alignItems: "center",
+          }}
+        >
+          <TextInput
+            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            left={<TextInput.Icon icon="card-account-details-outline" />}
+            mode="outlined"
+            label="First name"
+            value={firstName}
+            theme={{
+              colors: {
+                primary: theme.colors.primary,
+              },
+            }}
+            onChangeText={(text) => setFirstName(text)}
+          />
+          <TextInput
+            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            left={<TextInput.Icon icon="card-account-details" />}
+            mode="outlined"
+            label="Last name"
+            value={lastName}
+            theme={{
+              colors: {
+                primary: theme.colors.primary,
+              },
+            }}
+            onChangeText={(text) => setLastName(text)}
+          />
 
-      <Text style={styles.inputLabel}>Phone Number</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Phone Number"
-        value={phoneNumber}
-        onChangeText={(text) => setPhoneNumber(text)}
-      />
+          <TextInput
+            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            left={<TextInput.Icon icon="email" />}
+            mode="outlined"
+            label="Email"
+            value={email}
+            theme={{
+              colors: {
+                primary: theme.colors.primary,
+              },
+            }}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <TextInput
+            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            left={<TextInput.Icon icon="phone" />}
+            mode="outlined"
+            label="Phone number"
+            value={phoneNumber}
+            theme={{
+              colors: {
+                primary: theme.colors.primary,
+              },
+            }}
+            onChangeText={(text) => setPhoneNumber(text)}
+          />
 
-      <Text style={styles.inputLabel}>Password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-      />
-
-      <Text style={styles.inputLabel}>Confirm Password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        secureTextEntry
-        value={confirmPassword}
-        onChangeText={(text) => setConfirmPassword(text)}
-      />
-
-      <Button title="Register" onPress={mutate} />
+          <TextInput
+            style={{
+              borderColor: theme.colors.primary,
+              width: "95%",
+            }}
+            mode="outlined"
+            label="Password"
+            value={password}
+            secureTextEntry
+            left={<TextInput.Icon icon="lock" />}
+            theme={{
+              colors: {
+                primary: theme.colors.primary,
+              },
+            }}
+            onChangeText={(text) => setPassword(text)}
+          />
+        </View>
+        <Button
+          style={{ width: 210, marginTop: 20 }}
+          icon="account"
+          mode="contained"
+          onPress={handleRegister}
+          labelStyle={{ fontSize: 17 }}
+        >
+          Register
+        </Button>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Login)}
+          style={{ marginTop: 10 }}
+        >
+          <Text style={{ color: theme.colors.primary }}>
+            Return back to login screen
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    paddingHorizontal: 16,
-    marginTop: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 16,
-  },
-  inputLabel: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  input: {
-    height: 40,
-    width: "100%",
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 10,
-  },
-});
 
 export default Register;

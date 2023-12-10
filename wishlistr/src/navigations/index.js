@@ -2,7 +2,7 @@ const ROUTES = {
   HOME: {
     HOME_NAVIGATOR: "home navigator",
     HOME: {
-      HOME: "home",
+      Home: "home",
     },
   },
   EXPLORE: {
@@ -35,6 +35,7 @@ const ROUTES = {
     AUTH: {
       Login: "login",
       Register: "register",
+      Forgot: "forgot password",
     },
   },
 };
