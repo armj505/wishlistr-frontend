@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import Screen from "../../components/ui/Screen";
+import Title from "../../components/ui/Title";
 
 const Explore = () => {
   return (
-    <View>
-      <Text>Explore</Text>
-    </View>
+    <Screen>
+      <Title title="Explore" />
+    </Screen>
   );
 };
 

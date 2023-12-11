@@ -8,9 +8,12 @@ import Screen from "../../components/ui/Screen";
 
 const Profile = () => {
   const navigate = useNavigation();
+  const user = {
+    name: "Ahmad",
+  };
   return (
     <Screen>
-      <Title title="My Profile" />
+      <Title title={`Welcome, ${user.name} 😄`} />
 
       <Button
         title="SignOut"

@@ -25,7 +25,7 @@ export default function App() {
     dark: false,
     colors: {
       primary: "#edff00",
-      background: "#000",
+      background: "#111",
       card: "#dfdfdf",
       text: "#000",
       border: "rgb(199, 199, 204)",
@@ -55,6 +55,7 @@ export default function App() {
               {user ? <MainNav /> : <AuthNav />}
             </NavigationContainer>
             <Toast />
+            <StatusBar style="light" />
           </PaperProvider>
         </UserContext.Provider>
       </QueryClientProvider>
