@@ -1,7 +1,6 @@
 import { StyleSheet, View, TouchableOpacity } from "react-native";
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import Toast from "react-native-toast-message";
-
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../../apis/auth";
 import { useNavigation } from "@react-navigation/native";
@@ -11,7 +10,11 @@ import { TextInput } from "react-native-paper";
 import { Button } from "react-native-paper";
 import { Text } from "react-native-paper";
 
+import UserContext from "../../context/UserContext";
+import * as Animatable from "react-native-animatable";
+
 const Login = () => {
+  const { user, setUser } = useContext(UserContext);
   const theme = useTheme();
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -29,8 +32,8 @@ const Login = () => {
         text2: `redirecting to home screen`,
       });
       setTimeout(() => {
-        navigation.navigate(ROUTES.HOME.HOME.Home);
-      }, 3000);
+        setUser(true);
+      }, 1500);
     },
     onError: (error) => {
       let errorMessage = "An error occurred during login. Please try again.";
@@ -51,30 +54,41 @@ const Login = () => {
       });
     },
   });
-
+  useEffect(() => {}, []);
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.primary }}>
-      <View
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: theme.colors.onSecondaryContainer,
+      }}
+    >
+      <Animatable.View
+        animation="fadeIn"
+        duration={1500}
+        delay={500}
         style={{
           width: "100%",
           height: "20%",
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.onSecondaryContainer,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         <Text style={{ color: "white", fontSize: 25 }}>WishLister</Text>
-      </View>
-      <View
+      </Animatable.View>
+      <Animatable.View
+        animation="zoomIn"
+        duration={1500}
+        delay={500}
         style={{
           width: "100%",
           height: "80%",
           backgroundColor: theme.colors.surface,
-          borderTopStartRadius: 10,
-          borderTopEndRadius: 80,
+          borderTopStartRadius: 40,
+          borderTopEndRadius: 40,
           borderWidth: 6,
 
-          borderColor: theme.colors.surfaceDisabled,
+          borderColor: theme.colors.surfaceVariant,
           borderStyle: "solid",
           justifyContent: "flex-start",
           alignItems: "center",
@@ -82,7 +96,7 @@ const Login = () => {
       >
         <Text
           style={{
-            color: theme.colors.primary,
+            color: theme.colors.onSecondaryContainer,
 
             alignSelf: "flex-start",
             paddingVertical: 30,
@@ -99,14 +113,14 @@ const Login = () => {
           value={emailOrPhone}
           theme={{
             colors: {
-              primary: theme.colors.primary,
+              primary: theme.colors.onSecondaryContainer,
             },
           }}
           onChangeText={(text) => setEmailOrPhone(text)}
         />
         <TextInput
           style={{
-            borderColor: theme.colors.primary,
+            borderColor: theme.colors.onSecondaryContainer,
             width: "90%",
             marginTop: 20,
           }}
@@ -121,7 +135,7 @@ const Login = () => {
           }
           theme={{
             colors: {
-              primary: theme.colors.primary,
+              primary: theme.colors.onSecondaryContainer,
             },
           }}
           onChangeText={(text) => setPassword(text)}
@@ -130,10 +144,16 @@ const Login = () => {
           onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Forgot)}
           style={{ marginTop: 10, alignSelf: "flex-end", paddingRight: 25 }}
         >
-          <Text style={{ color: theme.colors.primary }}>Forgot Password?</Text>
+          <Text style={{ color: theme.colors.onSecondaryContainer }}>
+            Forgot Password?
+          </Text>
         </TouchableOpacity>
         <Button
-          style={{ width: 210, marginTop: 20 }}
+          style={{
+            width: 210,
+            marginTop: 20,
+            backgroundColor: theme.colors.onSecondaryContainer,
+          }}
           icon="login"
           mode="contained"
           onPress={mutate}
@@ -145,11 +165,11 @@ const Login = () => {
           onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Register)}
           style={{ marginTop: 10 }}
         >
-          <Text style={{ color: theme.colors.primary }}>
+          <Text style={{ color: theme.colors.onSecondaryContainer }}>
             Don't have an account? Register
           </Text>
         </TouchableOpacity>
-      </View>
+      </Animatable.View>
     </View>
   );
 };
