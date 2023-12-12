@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 import { deleteToken } from "../../apis/store";
 import { useNavigation } from "@react-navigation/native";
@@ -8,15 +8,15 @@ import Screen from "../../components/ui/Screen";
 
 const Profile = () => {
   const navigate = useNavigation();
-  const user = {
+  const firstName = {
     name: "Ahmad",
   };
   return (
     <Screen>
-      <Title title={`Welcome, ${user.name} 😄`} />
-
+      <Title title={`Welcome, ${firstName.name} 😄`} />
       <Button
         title="SignOut"
+        color="tomato"
         onPress={async () => {
           await deleteToken();
         }}

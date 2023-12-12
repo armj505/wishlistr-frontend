@@ -6,7 +6,9 @@ const Title = ({ title, align }) => {
   const { colors } = useTheme();
   return (
     <View style={[styles.container, { alignItems: align }]}>
-      <Text style={styles.title}>{title}</Text>
+      <Text numberOfLines={1} style={styles.title}>
+        {title}
+      </Text>
     </View>
   );
 };
@@ -25,6 +27,5 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "800",
     color: "white",
-    filter,
   },
 });
