@@ -5,41 +5,49 @@ import { Icon, useTheme } from "react-native-paper";
 import { TextInput } from "react-native-paper";
 import { Button } from "react-native-paper";
 import { Text } from "react-native-paper";
-import forgotPic from "../../../assets/pngwing.com.png";
 import * as Animatable from "react-native-animatable";
+import resetPic from "../../../assets/reset2.png";
 import { useMutation } from "@tanstack/react-query";
-import { forgotPassword } from "../../apis/auth";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigations";
-const ForgotPassword = () => {
+import { resetPassword } from "../../apis/auth";
+
+const ResetPassword = () => {
   const theme = useTheme();
-  const navigation = useNavigation();
-  const sentence = "Forgot password?";
+  const sentence = "Reset password?";
   const words = sentence.split(" ");
-  const [email, setEmail] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [password, setPassword] = useState("");
+  const [resetToken, setResetToken] = useState("");
+  //   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigation = useNavigation();
+  const route = useRoute();
+  //   const { resetToken } = route.params;
+
   const { mutate } = useMutation({
-    mutationKey: ["forgot"],
-    mutationFn: () => forgotPassword(email),
+    mutationKey: ["reset", resetToken],
+    mutationFn: () => resetPassword(resetToken, password),
     onSuccess: async () => {
       Toast.show({
         type: "success",
-        text1: "A reset email has been sent to:",
-        text2: `${email}`,
-        visibilityTime: 2000,
+        text1: "Password reset successful",
+        text2: "Redirecting you to login screen",
       });
       setTimeout(() => {
-        navigation.navigate(ROUTES.AUTH.AUTH.Reset);
-      }, 1200);
+        navigation.navigate(ROUTES.AUTH.AUTH.Login);
+      }, 1500);
     },
     onError: (error) => {
       Toast.show({
         type: "error",
-        text1: "Forgot password failed",
-        text2: error.response?.data?.error || "This email is not correct.",
-        visibilityTime: 2000,
+        text1: "Password reset failed",
+        text2: error.response.data?.error || "Inavalid or expired token",
       });
     },
   });
+  const handleResetPassword = () => {
+    mutate();
+  };
   return (
     <View
       style={{
@@ -83,8 +91,8 @@ const ForgotPassword = () => {
         }}
       >
         <Image
-          style={{ width: 320, height: 215, marginTop: 17 }}
-          source={forgotPic}
+          style={{ width: 300, height: 185, marginTop: 17 }}
+          source={resetPic}
         />
         {words.map((word, index) => {
           return (
@@ -101,29 +109,48 @@ const ForgotPassword = () => {
             </Text>
           );
         })}
-
-        <Text style={{ paddingVertical: 5 }}>
-          Please enter the email address associated with you account
-        </Text>
         <TextInput
-          value={email}
-          onChangeText={(text) => setEmail(text.trim())}
           style={{
             borderColor: theme.colors.onSecondaryContainer,
             width: "90%",
             marginTop: 20,
           }}
           mode="outlined"
-          label="email"
-          left={<TextInput.Icon icon="email" />}
+          label="Reset Token"
+          value={resetToken}
+          onChangeText={(text) => setResetToken(text.trim())}
           theme={{
             colors: {
               primary: theme.colors.onSecondaryContainer,
             },
           }}
         />
+        <TextInput
+          style={{
+            borderColor: theme.colors.onSecondaryContainer,
+            width: "90%",
+            marginTop: 20,
+          }}
+          mode="outlined"
+          label="New password"
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry={!isPasswordVisible}
+          right={
+            <TextInput.Icon
+              icon={isPasswordVisible ? "eye-off" : "eye"}
+              onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+            />
+          }
+          theme={{
+            colors: {
+              primary: theme.colors.onSecondaryContainer,
+            },
+          }}
+        />
+
         <TouchableOpacity
-          onPress={mutate}
+          onPress={handleResetPassword}
           style={{
             elevation: 8,
             backgroundColor: "black",
@@ -142,7 +169,7 @@ const ForgotPassword = () => {
               textTransform: "uppercase",
             }}
           >
-            Submit
+            Reset
           </Text>
         </TouchableOpacity>
       </Animatable.View>
@@ -150,6 +177,6 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;
 
 const styles = StyleSheet.create({});

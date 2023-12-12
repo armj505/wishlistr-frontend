@@ -5,6 +5,7 @@ import ROUTES from ".";
 import Login from "../screens/authScreens/Login";
 import Register from "../screens/authScreens/Register";
 import ForgotPassword from "../screens/authScreens/ForgotPassword";
+import ResetPassword from "../screens/authScreens/ResetPassword";
 
 const AuthNav = () => {
   const Stack = createStackNavigator();
@@ -13,6 +14,7 @@ const AuthNav = () => {
       <Stack.Screen name={ROUTES.AUTH.AUTH.Login} component={Login} />
       <Stack.Screen name={ROUTES.AUTH.AUTH.Register} component={Register} />
       <Stack.Screen name={ROUTES.AUTH.AUTH.Forgot} component={ForgotPassword} />
+      <Stack.Screen name={ROUTES.AUTH.AUTH.Reset} component={ResetPassword} />
     </Stack.Navigator>
   );
 };
