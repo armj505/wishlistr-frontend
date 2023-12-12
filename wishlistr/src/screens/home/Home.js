@@ -13,7 +13,7 @@ const Home = () => {
   };
   return (
     <Screen>
-      <Title title="Wishlistr" align="center" />
+      <Title title="WishlistR" align="center" />
       <ScrollView style={styles.scrollView}>
         <ItemCard item={item} wishList={true} />
         <ItemCard item={item} />

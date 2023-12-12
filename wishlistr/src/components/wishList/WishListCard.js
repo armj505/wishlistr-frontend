@@ -8,20 +8,20 @@ const WishListCard = ({ list }) => {
   return (
     <TouchableOpacity>
       <View style={styles.container}>
+        <Image source={{ uri: list.image }} style={styles.image} />
         <View style={styles.textContainer}>
-          <View style={styles.iconContainer}>
+          {/* <View style={styles.iconContainer}>
             <Text style={styles.icon}>
               {list.name.match(/[\p{Emoji}\u200d]+/gu)}
             </Text>
-          </View>
+          </View> */}
           <View style={styles.titleText}>
-            <Text style={styles.text}>
-              {list.name.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, "")}
+            <Text style={styles.text} numberOfLines={2}>
+              {list.name}
             </Text>
             <Text style={styles.textItems}>{list.items.length} items</Text>
           </View>
         </View>
-        <Image source={{ uri: list.image }} style={styles.image} />
       </View>
     </TouchableOpacity>
     // <TouchableOpacity>
@@ -123,34 +123,34 @@ const styles = StyleSheet.create({
     height: 80,
     alignSelf: "flex-end",
     borderRadius: 8,
-    opacity: 0.5,
+    opacity: 1,
     resizeMode: "contain",
   },
   textContainer: {
     flex: 1,
     flexDirection: "row",
-    paddingStart: 8,
+    paddingStart: 16,
     alignItems: "center",
     gap: 8,
   },
-  iconContainer: {
-    justifyContent: "center",
-    backgroundColor: "white",
-    width: 48,
-    height: 48,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 50,
-    overflow: "hidden",
-    borderWidth: 4,
-    borderColor: "#eeeeee",
-  },
-  icon: {
-    fontSize: 32,
-    padding: 0,
-    right: 0,
-    top: 0,
-  },
+  // iconContainer: {
+  //   justifyContent: "center",
+  //   backgroundColor: "white",
+  //   width: 48,
+  //   height: 48,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   borderRadius: 50,
+  //   overflow: "hidden",
+  //   borderWidth: 4,
+  //   borderColor: "#eeeeee",
+  // },
+  // icon: {
+  //   fontSize: 32,
+  //   padding: 0,
+  //   right: 0,
+  //   top: 0,
+  // },
   text: {
     fontSize: 16,
     fontWeight: "bold",
