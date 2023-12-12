@@ -9,6 +9,7 @@ import { TextInput } from "react-native-paper";
 import { Text } from "react-native-paper";
 import { Button } from "react-native-paper";
 import Toast from "react-native-toast-message";
+import * as Animatable from "react-native-animatable";
 
 const Register = () => {
   const theme = useTheme();
@@ -52,12 +53,17 @@ const Register = () => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.primary }}>
-      <View
+    <View
+      style={{ flex: 1, backgroundColor: theme.colors.onSecondaryContainer }}
+    >
+      <Animatable.View
+        animation="fadeIn"
+        duration={1500}
+        delay={500}
         style={{
           width: "100%",
           height: "20%",
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.onSecondaryContainer,
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -65,14 +71,17 @@ const Register = () => {
         <Text style={{ color: theme.colors.surface, fontSize: 25 }}>
           WishLister
         </Text>
-      </View>
-      <View
+      </Animatable.View>
+      <Animatable.View
+        animation="fadeIn"
+        duration={1500}
+        delay={500}
         style={{
           width: "100%",
           height: "80%",
           backgroundColor: theme.colors.surface,
-          borderTopStartRadius: 10,
-          borderTopEndRadius: 80,
+          borderTopStartRadius: 40,
+          borderTopEndRadius: 40,
           borderWidth: 6,
 
           borderColor: theme.colors.surfaceDisabled,
@@ -83,7 +92,7 @@ const Register = () => {
       >
         <Text
           style={{
-            color: theme.colors.primary,
+            color: theme.colors.onSecondaryContainer,
 
             alignSelf: "flex-start",
             paddingVertical: 30,
@@ -102,54 +111,66 @@ const Register = () => {
           }}
         >
           <TextInput
-            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            style={{
+              borderColor: theme.colors.onSecondaryContainer,
+              width: "95%",
+            }}
             left={<TextInput.Icon icon="card-account-details-outline" />}
             mode="outlined"
             label="First name"
             value={firstName}
             theme={{
               colors: {
-                primary: theme.colors.primary,
+                primary: theme.colors.onSecondaryContainer,
               },
             }}
             onChangeText={(text) => setFirstName(text)}
           />
           <TextInput
-            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            style={{
+              borderColor: theme.colors.onSecondaryContainer,
+              width: "95%",
+            }}
             left={<TextInput.Icon icon="card-account-details" />}
             mode="outlined"
             label="Last name"
             value={lastName}
             theme={{
               colors: {
-                primary: theme.colors.primary,
+                primary: theme.colors.onSecondaryContainer,
               },
             }}
             onChangeText={(text) => setLastName(text)}
           />
 
           <TextInput
-            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            style={{
+              borderColor: theme.colors.onSecondaryContainer,
+              width: "95%",
+            }}
             left={<TextInput.Icon icon="email" />}
             mode="outlined"
             label="Email"
             value={email}
             theme={{
               colors: {
-                primary: theme.colors.primary,
+                primary: theme.colors.onSecondaryContainer,
               },
             }}
             onChangeText={(text) => setEmail(text)}
           />
           <TextInput
-            style={{ borderColor: theme.colors.primary, width: "95%" }}
+            style={{
+              borderColor: theme.colors.onSecondaryContainer,
+              width: "95%",
+            }}
             left={<TextInput.Icon icon="phone" />}
             mode="outlined"
             label="Phone number"
             value={phoneNumber}
             theme={{
               colors: {
-                primary: theme.colors.primary,
+                primary: theme.colors.onSecondaryContainer,
               },
             }}
             onChangeText={(text) => setPhoneNumber(text)}
@@ -157,7 +178,7 @@ const Register = () => {
 
           <TextInput
             style={{
-              borderColor: theme.colors.primary,
+              borderColor: theme.colors.onSecondaryContainer,
               width: "95%",
             }}
             mode="outlined"
@@ -167,14 +188,18 @@ const Register = () => {
             left={<TextInput.Icon icon="lock" />}
             theme={{
               colors: {
-                primary: theme.colors.primary,
+                primary: theme.colors.onSecondaryContainer,
               },
             }}
             onChangeText={(text) => setPassword(text)}
           />
         </View>
         <Button
-          style={{ width: 210, marginTop: 20 }}
+          style={{
+            width: 210,
+            marginTop: 20,
+            backgroundColor: theme.colors.onSecondaryContainer,
+          }}
           icon="account"
           mode="contained"
           onPress={handleRegister}
@@ -186,11 +211,11 @@ const Register = () => {
           onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Login)}
           style={{ marginTop: 10 }}
         >
-          <Text style={{ color: theme.colors.primary }}>
+          <Text style={{ color: theme.colors.onSecondaryContainer }}>
             Return back to login screen
           </Text>
         </TouchableOpacity>
-      </View>
+      </Animatable.View>
     </View>
   );
 };
