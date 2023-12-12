@@ -36,6 +36,7 @@ const ROUTES = {
       Login: "login",
       Register: "register",
       Forgot: "forgot password",
+      Reset: "reset password",
     },
   },
 };

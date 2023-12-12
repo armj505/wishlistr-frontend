@@ -16,6 +16,7 @@ const Profile = () => {
   return (
     <Screen>
       <Title title={`Welcome, ${firstName.name} 😄`} />
+
       <Button
         title="SignOut"
         color="tomato"

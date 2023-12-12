@@ -53,27 +53,30 @@ const Register = () => {
   };
 
   return (
-    <View
-      style={{ flex: 1, backgroundColor: theme.colors.onSecondaryContainer }}
-    >
+    <View style={{ flex: 1, backgroundColor: theme.colors.onBackground }}>
       <Animatable.View
-        animation="fadeIn"
-        duration={1500}
-        delay={500}
         style={{
           width: "100%",
           height: "20%",
-          backgroundColor: theme.colors.onSecondaryContainer,
+          backgroundColor: theme.colors.onBackground,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Text style={{ color: theme.colors.surface, fontSize: 25 }}>
-          WishLister
-        </Text>
+        <Animatable.Text
+          animation="lightSpeedIn"
+          delay={1000}
+          style={{
+            color: theme.colors.surface,
+            fontSize: 25,
+            fontWeight: "bold",
+          }}
+        >
+          WishListr
+        </Animatable.Text>
       </Animatable.View>
       <Animatable.View
-        animation="fadeIn"
+        animation="bounceInUp"
         duration={1500}
         delay={500}
         style={{
@@ -84,7 +87,7 @@ const Register = () => {
           borderTopEndRadius: 40,
           borderWidth: 6,
 
-          borderColor: theme.colors.surfaceDisabled,
+          borderColor: theme.colors.surfaceVariant,
           borderStyle: "solid",
           justifyContent: "flex-start",
           alignItems: "center",
@@ -93,6 +96,7 @@ const Register = () => {
         <Text
           style={{
             color: theme.colors.onSecondaryContainer,
+            fontWeight: "bold",
 
             alignSelf: "flex-start",
             paddingVertical: 30,
@@ -194,24 +198,34 @@ const Register = () => {
             onChangeText={(text) => setPassword(text)}
           />
         </View>
-        <Button
-          style={{
-            width: 210,
-            marginTop: 20,
-            backgroundColor: theme.colors.onSecondaryContainer,
-          }}
-          icon="account"
-          mode="contained"
+        <TouchableOpacity
           onPress={handleRegister}
-          labelStyle={{ fontSize: 17 }}
+          style={{
+            elevation: 8,
+            backgroundColor: "black",
+            borderRadius: 8,
+            marginTop: 16,
+            width: "60%",
+            paddingVertical: 8,
+          }}
         >
-          Register
-        </Button>
+          <Text
+            style={{
+              fontSize: 18,
+              color: "#fff",
+              fontWeight: "bold",
+              alignSelf: "center",
+              textTransform: "uppercase",
+            }}
+          >
+            Register
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Login)}
           style={{ marginTop: 10 }}
         >
-          <Text style={{ color: theme.colors.onSecondaryContainer }}>
+          <Text style={{ color: theme.colors.tertiary }}>
             Return back to login screen
           </Text>
         </TouchableOpacity>
