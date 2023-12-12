@@ -10,12 +10,12 @@ import UserContext from "../../context/UserContext";
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigation();
-  const user = {
+  const firstName = {
     name: "Ahmad",
   };
   return (
     <Screen>
-      <Title title={`Welcome, ${user.name} 😄`} />
+      <Title title={`Welcome, ${firstName.name} 😄`} />
 
       <Button
         title="SignOut"

@@ -23,4 +23,18 @@ const login = async (emailOrPhone, password) => {
   return response.data;
 };
 
-export { register, login };
+const forgotPassword = async (email) => {
+  const response = await instance.post("/auth/forgot-password", {
+    email,
+  });
+  return response.data;
+};
+
+const resetPassword = async (resetToken, password) => {
+  const response = await instance.post(`/auth/reset-password/${resetToken}`, {
+    password,
+  });
+  return response.data;
+};
+
+export { register, login, forgotPassword, resetPassword };

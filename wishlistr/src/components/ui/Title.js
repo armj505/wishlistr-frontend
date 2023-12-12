@@ -25,6 +25,5 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "800",
     color: "white",
-    filter,
   },
 });

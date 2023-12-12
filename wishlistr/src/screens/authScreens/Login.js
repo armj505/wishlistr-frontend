@@ -5,13 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../../apis/auth";
 import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigations";
-import { useTheme } from "react-native-paper";
+import { Icon, useTheme } from "react-native-paper";
 import { TextInput } from "react-native-paper";
 import { Button } from "react-native-paper";
 import { Text } from "react-native-paper";
-
+import giftPic from "../../../assets/gift-128.png";
 import UserContext from "../../context/UserContext";
 import * as Animatable from "react-native-animatable";
+import { color } from "react-native-elements/dist/helpers";
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
@@ -54,35 +55,47 @@ const Login = () => {
       });
     },
   });
-  useEffect(() => {}, []);
+
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: theme.colors.onSecondaryContainer,
+        backgroundColor: theme.colors.onBackground,
       }}
     >
       <Animatable.View
         animation="fadeIn"
         duration={1500}
-        delay={500}
+        delay={1000}
         style={{
           width: "100%",
-          height: "20%",
-          backgroundColor: theme.colors.onSecondaryContainer,
+          height: "40%",
+          backgroundColor: theme.colors.onBackground,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "white", fontSize: 25 }}>WishLister</Text>
+        <Animatable.Image source={giftPic} style={{ marginTop: 24 }} />
+        <Animatable.Text
+          animation="lightSpeedIn"
+          delay={1000}
+          style={{
+            color: "white",
+            fontSize: 26,
+            marginTop: 30,
+            fontWeight: "bold",
+          }}
+        >
+          WishListr
+        </Animatable.Text>
       </Animatable.View>
       <Animatable.View
-        animation="zoomIn"
+        animation="bounceInUp"
         duration={1500}
         delay={500}
         style={{
           width: "100%",
-          height: "80%",
+          height: "60%",
           backgroundColor: theme.colors.surface,
           borderTopStartRadius: 40,
           borderTopEndRadius: 40,
@@ -101,6 +114,7 @@ const Login = () => {
             alignSelf: "flex-start",
             paddingVertical: 30,
             paddingLeft: 10,
+            fontWeight: "bold",
           }}
           variant="titleLarge"
         >
@@ -144,29 +158,54 @@ const Login = () => {
           onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Forgot)}
           style={{ marginTop: 10, alignSelf: "flex-end", paddingRight: 25 }}
         >
-          <Text style={{ color: theme.colors.onSecondaryContainer }}>
-            Forgot Password?
+          <Text style={{ color: theme.colors.tertiary }}>Forgot Password?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={mutate}
+          style={{
+            elevation: 8,
+            backgroundColor: "black",
+            borderRadius: 8,
+            marginTop: 16,
+            width: "60%",
+            paddingVertical: 8,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 18,
+              color: "#fff",
+              fontWeight: "bold",
+              alignSelf: "center",
+              textTransform: "uppercase",
+            }}
+          >
+            Login
           </Text>
         </TouchableOpacity>
-        <Button
-          style={{
-            width: 210,
-            marginTop: 20,
-            backgroundColor: theme.colors.onSecondaryContainer,
-          }}
-          icon="login"
-          mode="contained"
-          onPress={mutate}
-          labelStyle={{ fontSize: 17 }}
-        >
-          login
-        </Button>
+
         <TouchableOpacity
           onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Register)}
-          style={{ marginTop: 10 }}
+          style={{
+            elevation: 8,
+            backgroundColor: theme.colors.outline,
+            borderRadius: 8,
+            marginTop: 10,
+            width: "60%",
+            paddingVertical: 8,
+          }}
         >
-          <Text style={{ color: theme.colors.onSecondaryContainer }}>
-            Don't have an account? Register
+          <Text
+            style={{
+              fontSize: 18,
+              color: "#fff",
+              fontWeight: "bold",
+              alignSelf: "center",
+              textTransform: "uppercase",
+            }}
+          >
+            Register
           </Text>
         </TouchableOpacity>
       </Animatable.View>
