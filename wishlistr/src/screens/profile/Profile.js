@@ -19,6 +19,7 @@ const Profile = () => {
 
       <Button
         title="SignOut"
+        color="tomato"
         onPress={async () => {
           await deleteToken();
           setUser(false);

@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, wishList }) => {
   const { colors } = useTheme();
   let isAdded;
   return (
@@ -19,15 +19,19 @@ const ItemCard = ({ item }) => {
           </View>
         </View>
       </TouchableOpacity>
-      {!isAdded ? (
-        <Ionicons
-          name="heart-outline"
-          size={32}
-          color="tomato"
-          style={styles.icon}
-        />
+      {!wishList ? (
+        !isAdded ? (
+          <Ionicons
+            name="heart-outline"
+            size={32}
+            color="tomato"
+            style={styles.icon}
+          />
+        ) : (
+          <Ionicons name="heart" size={32} color="tomato" style={styles.icon} />
+        )
       ) : (
-        <Ionicons name="heart" size={32} color="tomato" style={styles.icon} />
+        <></>
       )}
     </View>
   );
