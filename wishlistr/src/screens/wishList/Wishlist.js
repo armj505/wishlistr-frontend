@@ -109,7 +109,9 @@ const Wishlist = () => {
 
   return (
     <Screen>
-      <Title title="Wishlists" />
+      <View>
+        <Title title="Wishlists" />
+      </View>
       <ScrollView style={styles.scrollView}>{wishlists}</ScrollView>
     </Screen>
   );
