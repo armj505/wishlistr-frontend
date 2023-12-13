@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
 import Profile from "../screens/profile/Profile";
 import EditProfile from "../screens/profile/EditProfile";
+import Settings from "../screens/profile/Settings";
 
 const Stack = createStackNavigator();
 const ProfileNav = () => {
@@ -13,6 +14,10 @@ const ProfileNav = () => {
       <Stack.Screen
         name={ROUTES.PROFILE.PROFILE.EDITPROFILE}
         component={EditProfile}
+      />
+      <Stack.Screen
+        name={ROUTES.PROFILE.PROFILE.SETTINGS}
+        component={Settings}
       />
     </Stack.Navigator>
   );
