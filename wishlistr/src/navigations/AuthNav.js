@@ -11,10 +11,10 @@ const AuthNav = () => {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={ROUTES.AUTH.AUTH.Login} component={Login} />
-      <Stack.Screen name={ROUTES.AUTH.AUTH.Register} component={Register} />
-      <Stack.Screen name={ROUTES.AUTH.AUTH.Forgot} component={ForgotPassword} />
-      <Stack.Screen name={ROUTES.AUTH.AUTH.Reset} component={ResetPassword} />
+      <Stack.Screen name={ROUTES.AUTH.AUTH.LOGIN} component={Login} />
+      <Stack.Screen name={ROUTES.AUTH.AUTH.REGISTER} component={Register} />
+      <Stack.Screen name={ROUTES.AUTH.AUTH.FORGOT} component={ForgotPassword} />
+      <Stack.Screen name={ROUTES.AUTH.AUTH.RESET} component={ResetPassword} />
     </Stack.Navigator>
   );
 };

@@ -1,21 +1,33 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { useTheme } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import ROUTES from "../../navigations";
 
 const ItemCard = ({ item, wishList }) => {
+  const navigation = useNavigation();
+  const [isAdded, setIsAdded] = useState(false);
   const { colors } = useTheme();
-  let isAdded;
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.push(ROUTES.WISHLIST.WISHLIST.ITEM, { item: item });
+        }}
+        onLongPress={() => {
+          setIsAdded(!isAdded);
+          console.log("like");
+        }}
+      >
         <View style={[styles.container, { backgroundColor: colors.card }]}>
           <View style={styles.imageContainer}>
             <Image source={{ uri: item.image }} style={styles.image} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.text}>{item.name}</Text>
+            <Text numberOfLines={1} style={styles.text}>
+              {item.name}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -24,7 +36,7 @@ const ItemCard = ({ item, wishList }) => {
           <Ionicons
             name="heart-outline"
             size={32}
-            color="tomato"
+            color="#eee"
             style={styles.icon}
           />
         ) : (
@@ -76,7 +88,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: "absolute",
-    right: 16,
+    width: 32,
+    height: 32,
     top: 16,
+    right: 16,
   },
 });

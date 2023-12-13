@@ -2,7 +2,7 @@ const ROUTES = {
   HOME: {
     HOME_NAVIGATOR: "home navigator",
     HOME: {
-      Home: "home",
+      HOME: "home",
     },
   },
   EXPLORE: {
@@ -20,6 +20,7 @@ const ROUTES = {
     WISHLIST_NAVIGATOR: "wishlist navigator",
     WISHLIST: {
       WISHLIST: "wishlist",
+      ITEM: "item",
     },
   },
   PROFILE: {
@@ -33,10 +34,10 @@ const ROUTES = {
   },
   AUTH: {
     AUTH: {
-      Login: "login",
-      Register: "register",
-      Forgot: "forgot password",
-      Reset: "reset password",
+      LOGIN: "login",
+      REGISTER: "register",
+      FORGOT: "forgot password",
+      RESET: "reset password",
     },
   },
 };

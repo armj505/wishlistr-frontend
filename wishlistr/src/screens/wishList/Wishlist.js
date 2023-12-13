@@ -84,6 +84,7 @@ import Title from "../../components/ui/Title";
 import WishListCard from "../../components/wishList/WishListCard";
 import Screen from "../../components/ui/Screen";
 import { ScrollView } from "react-native-gesture-handler";
+import HeaderIcon from "../../components/ui/HeaderIcon";
 
 const Wishlist = () => {
   const { colors } = useTheme();
@@ -109,8 +110,11 @@ const Wishlist = () => {
 
   return (
     <Screen>
-      <View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Title title="Wishlists" />
+        <View style={styles.iconContainer}>
+          <HeaderIcon icon="add-circle" press={() => console.log("pressed")} />
+        </View>
       </View>
       <ScrollView style={styles.scrollView}>{wishlists}</ScrollView>
     </Screen>
@@ -123,5 +127,11 @@ const styles = StyleSheet.create({
   scrollView: {
     marginTop: 8,
     width: "100%",
+  },
+  iconContainer: {
+    justifyContent: "center",
+    position: "absolute",
+    right: 0,
+    top: 8,
   },
 });
