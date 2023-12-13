@@ -3,12 +3,25 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
 import Home from "../screens/home/Home";
+import ItemDetails from "../screens/wishlist/ItemDetails";
 
 const HomeNav = () => {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={ROUTES.HOME.HOME.Home} component={Home} />
+    <Stack.Navigator
+      initialRouteName={ROUTES.HOME.HOME.HOME}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen
+        name={ROUTES.HOME.HOME.HOME}
+        component={Home}
+        options={{ title: ROUTES.HOME.HOME.HOME }}
+      />
+      <Stack.Screen
+        name={ROUTES.WISHLIST.WISHLIST.ITEM}
+        component={ItemDetails}
+        options={{ title: ROUTES.WISHLIST.WISHLIST.ITEM }}
+      />
     </Stack.Navigator>
   );
 };

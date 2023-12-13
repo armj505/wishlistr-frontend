@@ -5,12 +5,19 @@ import { Ionicons } from "@expo/vector-icons";
 
 const HeaderIcon = ({ icon, press }) => {
   return (
-    <TouchableOpacity>
-      <Ionicons color="#edff00" name={icon} onPress={press} />
+    <TouchableOpacity style={styles.icon} onPress={press}>
+      <Ionicons name={icon} size={32} color="#edff00" />
     </TouchableOpacity>
   );
 };
 
 export default HeaderIcon;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  icon: {
+    width: 32,
+    height: 32,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
