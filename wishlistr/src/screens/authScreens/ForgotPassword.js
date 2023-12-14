@@ -28,7 +28,7 @@ const ForgotPassword = () => {
         visibilityTime: 2000,
       });
       setTimeout(() => {
-        navigation.navigate(ROUTES.AUTH.AUTH.Reset);
+        navigation.navigate(ROUTES.AUTH.AUTH.RESET);
       }, 1200);
     },
     onError: (error) => {
@@ -103,7 +103,7 @@ const ForgotPassword = () => {
         })}
 
         <Text style={{ paddingVertical: 5 }}>
-          Please enter the email address associated with you account
+          Please enter the email address associated with your account
         </Text>
         <TextInput
           value={email}

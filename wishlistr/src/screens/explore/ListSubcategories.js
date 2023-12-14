@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import Title from "../../components/ui/Title";
+import Screen from "../../components/ui/Screen";
 
 const ListSubcategories = () => {
   return (
-    <View>
-      <Text>ListSubcategories</Text>
-    </View>
+    <Screen>
+      <Title title="Sub Categories" />
+    </Screen>
   );
 };
 

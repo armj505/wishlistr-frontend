@@ -2,14 +2,14 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { TextInput } from "react-native-paper";
 
-const ReadOnlyTextInput = ({ label, value }) => {
+const ReadOnlyTextInput = ({ label, value, w, h, editable }) => {
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.label}>{label}</Text>
       <TextInput
         value={value}
-        style={styles.input}
-        editable={false}
+        style={{ width: w, height: h }}
+        editable={editable}
         pointerEvents="none"
         mode="outlined"
       />
