@@ -154,7 +154,7 @@ const Login = () => {
           onChangeText={(text) => setPassword(text)}
         />
         <TouchableOpacity
-          onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Forgot)}
+          onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.FORGOT)}
           style={{ marginTop: 10, alignSelf: "flex-end", paddingRight: 25 }}
         >
           <Text style={{ color: theme.colors.tertiary }}>Forgot Password?</Text>
@@ -185,7 +185,7 @@ const Login = () => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Register)}
+          onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.REGISTER)}
           style={{
             elevation: 8,
             backgroundColor: theme.colors.outline,

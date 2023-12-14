@@ -34,7 +34,7 @@ const ResetPassword = () => {
         text2: "Redirecting you to login screen",
       });
       setTimeout(() => {
-        navigation.navigate(ROUTES.AUTH.AUTH.Login);
+        navigation.navigate(ROUTES.AUTH.AUTH.LOGIN);
       }, 1500);
     },
     onError: (error) => {

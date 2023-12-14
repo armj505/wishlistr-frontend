@@ -222,7 +222,7 @@ const Register = () => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.Login)}
+          onPress={() => navigation.navigate(ROUTES.AUTH.AUTH.LOGIN)}
           style={{ marginTop: 10 }}
         >
           <Text style={{ color: theme.colors.tertiary }}>
