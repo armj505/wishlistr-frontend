@@ -28,7 +28,7 @@ const ForgotPassword = () => {
         visibilityTime: 2000,
       });
       setTimeout(() => {
-        navigation.navigate(ROUTES.AUTH.AUTH.Reset);
+        navigation.navigate(ROUTES.AUTH.AUTH.RESET);
       }, 1200);
     },
     onError: (error) => {

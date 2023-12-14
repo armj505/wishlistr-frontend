@@ -1,15 +1,16 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { useTheme } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
+import ROUTES from "../../navigations";
 
-const FilterCard = ({ title, image }) => {
+const FilterCard = ({ category, image }) => {
   const { colors } = useTheme();
   return (
     <TouchableOpacity>
       <View style={styles.container}>
         <Image />
-        <Text style={styles.text}>{title}</Text>
+        <Text style={styles.text}>{category.name}</Text>
       </View>
     </TouchableOpacity>
   );

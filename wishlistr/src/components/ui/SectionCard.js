@@ -2,39 +2,36 @@ import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import FilterCard from "./FilterCard";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const SectionCard = ({ title }) => {
+const SectionCard = ({ title, data, routeName, viewMore }) => {
+  const navigation = useNavigation();
+  const cardList = data;
+  const dataCards = cardList?.map((tag) => (
+    <FilterCard category={tag} key={tag._id} />
+  ));
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <View>
         <View style={styles.cardContainers}>
-          <FilterCard title="Apple" />
-          <FilterCard title="Samsung" />
-          <FilterCard title="Huawei" />
-          <FilterCard title="Apple" />
-          <FilterCard title="Samsung" />
-          <FilterCard title="Huawei" />
-          <FilterCard title="Apple" />
-          <FilterCard title="Samsung" />
-          <FilterCard title="Huawei" />
-          <FilterCard title="Apple" />
-          <FilterCard title="Samsung" />
-          <FilterCard title="Huawei" />
-          <FilterCard title="Apple" />
-          <FilterCard title="Samsung" />
-          <FilterCard title="Huawei" />
-          <TouchableOpacity
-            style={{
-              alignItems: "center",
-              flexDirection: "row",
-              width: "100%",
-              justifyContent: "flex-end",
-            }}
-          >
-            <Text style={{ color: "#888" }}>View More</Text>
-            <Ionicons name="chevron-forward" size={16} color="#888" />
-          </TouchableOpacity>
+          {dataCards}
+          {!viewMore ? (
+            <></>
+          ) : (
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                flexDirection: "row",
+                width: "100%",
+                justifyContent: "flex-end",
+              }}
+              onPress={() => navigation.navigate(routeName)}
+            >
+              <Text style={{ color: "#888" }}>View More</Text>
+              <Ionicons name="chevron-forward" size={16} color="#888" />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
