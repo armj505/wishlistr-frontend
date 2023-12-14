@@ -103,7 +103,7 @@ const ForgotPassword = () => {
         })}
 
         <Text style={{ paddingVertical: 5 }}>
-          Please enter the email address associated with you account
+          Please enter the email address associated with your account
         </Text>
         <TextInput
           value={email}
