@@ -12,7 +12,6 @@ import { Text } from "react-native-paper";
 import giftPic from "../../../assets/gift-128.png";
 import UserContext from "../../context/UserContext";
 import * as Animatable from "react-native-animatable";
-import { color } from "react-native-elements/dist/helpers";
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);

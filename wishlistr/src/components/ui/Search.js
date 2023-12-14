@@ -1,8 +1,10 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 const Search = () => {
+  const [search, setSearch] = useState("");
+
   return (
     <View style={styles.container}>
       <View style={styles.textField}>
@@ -10,7 +12,19 @@ const Search = () => {
         <TextInput
           style={styles.input}
           placeholder="Search in WishlistR"
+          onChangeText={(e) => setSearch(e)}
+          clearButtonMode="always"
         ></TextInput>
+        {/* {search === "" ? (
+          <></>
+        ) : (
+          <Ionicons
+            name="close-circle"
+            size={24}
+            color="#888"
+            onPress={this.textInput.clear()}
+          />
+        )} */}
       </View>
     </View>
   );
@@ -23,6 +37,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "auto",
     paddingHorizontal: 16,
+    paddingTop: 8,
   },
   textField: {
     width: "100%",

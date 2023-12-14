@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 8,
     paddingHorizontal: 16,
-    height: "auto",
     width: "100%",
+    height: "auto",
     borderRadius: 16,
   },
   title: {
