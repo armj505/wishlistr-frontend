@@ -3,16 +3,17 @@ import React from "react";
 import FilterCard from "./FilterCard";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import ROUTES from "../../navigations";
 
 const SectionCard = ({ title, data, routeName, viewMore }) => {
   const navigation = useNavigation();
   const cardList = data;
   const dataCards = cardList?.map((tag) => (
-    <FilterCard category={tag} key={tag._id} />
+    <FilterCard category={tag} key={tag._id} routeName={routeName} />
   ));
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      {title ? <Text style={styles.title}>{title}</Text> : <></>}
       <View>
         <View style={styles.cardContainers}>
           {dataCards}
@@ -26,7 +27,9 @@ const SectionCard = ({ title, data, routeName, viewMore }) => {
                 width: "100%",
                 justifyContent: "flex-end",
               }}
-              onPress={() => navigation.navigate(routeName)}
+              onPress={() =>
+                navigation.navigate(ROUTES.EXPLORE.EXPLORE.LISTBRAND)
+              }
             >
               <Text style={{ color: "#888" }}>View More</Text>
               <Ionicons name="chevron-forward" size={16} color="#888" />

@@ -1,12 +1,12 @@
 import { instance } from ".";
 
 const getAllItems = async () => {
-  const { data } = instance.get("/api/item");
+  const { data } = await instance.get("/item");
   return data;
 };
 
 const getItem = async (itemId) => {
-  const { data } = instance.get(`/api/item/${itemId}`);
+  const { data } = await instance.get(`/item/${itemId}`);
   return data;
 };
 

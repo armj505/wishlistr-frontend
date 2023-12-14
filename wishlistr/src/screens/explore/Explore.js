@@ -10,27 +10,26 @@ import { getAllBrands, getAllCategories } from "../../apis/explore";
 import ROUTES from "../../navigations";
 
 const Explore = () => {
-  // const { data: brands_ } = useQuery({
-  //   queryKey: ["brands"],
-  //   queryFn: () => getAllBrands(),
-  // });
+  const { data: brands_ } = useQuery({
+    queryKey: ["brands"],
+    queryFn: () => getAllBrands(),
+  });
 
-  // const { data: categories_ } = useQuery({
-  //   queryKey: ["categories"],
-  //   queryFn: () => getAllCategories(),
-  // });
+  const { data: categories_ } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => getAllCategories(),
+  });
 
-  const brands_ = [
-    { name: 1, _id: 1 },
-    { name: 2, _id: 2 },
-    { name: 3, _id: 3 },
-  ];
-  const categories_ = [
-    { name: 1, _id: 1 },
-    { name: 2, _id: 2 },
-    { name: 3, _id: 3 },
-  ];
-
+  // const brands_ = [
+  //   { name: 1, _id: 1 },
+  //   { name: 2, _id: 2 },
+  //   { name: 3, _id: 3 },
+  // ];
+  // const categories_ = [
+  //   { name: 1, _id: 1 },
+  //   { name: 2, _id: 2 },
+  //   { name: 3, _id: 3 },
+  // ];
   return (
     <Screen>
       <Title title="Explore" />
@@ -39,7 +38,7 @@ const Explore = () => {
         <SectionCard
           title="Brands"
           data={brands_}
-          routeName={ROUTES.EXPLORE.EXPLORE.LISTBRAND}
+          routeName={ROUTES.EXPLORE.EXPLORE.BRAND}
           viewMore={true}
         />
         <SectionCard

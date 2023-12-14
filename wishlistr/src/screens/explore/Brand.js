@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import Screen from "../../components/ui/Screen";
+import Title from "../../components/ui/Title";
 
 const Brand = () => {
   return (
-    <View>
-      <Text>Brand</Text>
-    </View>
+    <Screen>
+      <Title title="Apple" />
+    </Screen>
   );
 };
 

@@ -8,12 +8,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllItems } from "../../apis/item";
 
 const Home = () => {
-  // const { data } = useQuery({
-  //   queryKey: ["items"],
-  //   queryFn: () => getAllItems(),
-  // });
-  const data = [{ name: "ahmad", _id: 1 }];
-  const items = data?.map((item) => <ItemCard item={item} key={item._id} />);
+  const { data: items_ } = useQuery({
+    queryKey: ["items"],
+    queryFn: () => getAllItems(),
+  });
+  // const data = [{ name: "ahmad", _id: 1 }];
+  const items = items_?.map((item) => <ItemCard item={item} key={item._id} />);
   // const item = {
   //   name: "Apple iPhone 15 Pro Max 6.7-inch 512 5G Blue",
   //   brand: "Apple",
