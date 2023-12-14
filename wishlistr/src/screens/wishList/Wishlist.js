@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { useTheme } from "@react-navigation/native";
 import Title from "../../components/ui/Title";
@@ -6,9 +6,17 @@ import WishListCard from "../../components/wishList/WishListCard";
 import Screen from "../../components/ui/Screen";
 import { ScrollView } from "react-native-gesture-handler";
 import HeaderIcon from "../../components/ui/HeaderIcon";
+import { useQuery } from "@tanstack/react-query";
+import { getAllWishlists } from "../../apis/wishList";
 
-const Wishlist = () => {
+const Wishlist_ = () => {
   const { colors } = useTheme();
+
+  const { data } = useQuery({
+    queryKey: ["wishaList"],
+    queryFn: () => getAllWishlists(),
+  });
+  console.log(data);
   const list = [
     {
       id: 1,
@@ -35,14 +43,30 @@ const Wishlist = () => {
         <Title title="Wishlists" />
         <View style={styles.iconContainer}>
           <HeaderIcon icon="add-circle" press={() => console.log("pressed")} />
+          {/* <Text style={{ color: "blue" }}>nora</Text> */}
         </View>
       </View>
-      <ScrollView style={styles.scrollView}>{wishlists}</ScrollView>
+      <ScrollView style={styles.scrollView}>
+        {wishlists}
+        {/* <TextInput
+          style={{
+            width: "90%",
+            height: "15%",
+            borderWidth: 2,
+            borderRadius: 17,
+            paddingHorizontal: 15,
+          }}
+          placeholder="Enter Your wishList Name"
+          onChange={}
+        ></TextInput> */}
+
+        {/* <WishListCard list={{ name: "test", image: "", items: [] }} /> */}
+      </ScrollView>
     </Screen>
   );
 };
 
-export default Wishlist;
+export default Wishlist_;
 
 const styles = StyleSheet.create({
   scrollView: {

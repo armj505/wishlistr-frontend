@@ -3,7 +3,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
 import Home from "../screens/home/Home";
-import ItemDetails from "../screens/wishlist/ItemDetails";
+import ItemDetails from "../screens/wishList/ItemDetails";
 
 const HomeNav = () => {
   const Stack = createStackNavigator();
