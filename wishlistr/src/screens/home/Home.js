@@ -10,14 +10,14 @@ import NotificationExample from "../../components/notification/CreateNotificatio
 import NotificationPermission from "../../components/notification/RequestPermissions";
 
 const Home = () => {
-  // const { data } = useQuery({
-  //   queryKey: ["items"],
-  //   queryFn: () => getAllItems(),
-  // });
+  const { data: items_ } = useQuery({
+    queryKey: ["items"],
+    queryFn: () => getAllItems(),
+  });
   const [expoPushToken, setExpoPushToken] = useState("");
 
   const data = [{ name: "ahmad", _id: 1 }];
-  const items = data?.map((item) => <ItemCard item={item} key={item._id} />);
+  const items = items_?.map((item) => <ItemCard item={item} key={item._id} />);
   // const item = {
   //   name: "Apple iPhone 15 Pro Max 6.7-inch 512 5G Blue",
   //   brand: "Apple",

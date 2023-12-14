@@ -6,7 +6,7 @@ import Screen from "../../components/ui/Screen";
 const ListSubcategories = () => {
   return (
     <Screen>
-      <Title title="Sub Categories" />
+      <Title title={"SubCategories"} />
     </Screen>
   );
 };

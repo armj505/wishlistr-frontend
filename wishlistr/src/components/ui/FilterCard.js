@@ -4,10 +4,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import ROUTES from "../../navigations";
 
-const FilterCard = ({ category, image }) => {
+const FilterCard = ({ category, image, routeName }) => {
+  const navigation = useNavigation();
   const { colors } = useTheme();
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate(routeName)}>
       <View style={styles.container}>
         <Image />
         <Text style={styles.text}>{category.name}</Text>
