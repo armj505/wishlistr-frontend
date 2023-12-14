@@ -1,17 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Screen from "../../components/ui/Screen";
 import Title from "../../components/ui/Title";
 import { ScrollView } from "react-native-gesture-handler";
 import ItemCard from "../../components/ui/ItemCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllItems } from "../../apis/item";
+import NotificationExample from "../../components/notification/CreateNotification";
+import NotificationPermission from "../../components/notification/RequestPermissions";
 
 const Home = () => {
   // const { data } = useQuery({
   //   queryKey: ["items"],
   //   queryFn: () => getAllItems(),
   // });
+  const [expoPushToken, setExpoPushToken] = useState("");
+
   const data = [{ name: "ahmad", _id: 1 }];
   const items = data?.map((item) => <ItemCard item={item} key={item._id} />);
   // const item = {
@@ -24,9 +28,10 @@ const Home = () => {
   //   price: "459.900 KD",
   //   description: "This is \n new line \n text",
   // };
-
+  console.log({ expoPushToken });
   return (
     <Screen>
+      <NotificationPermission setExpoPushToken={setExpoPushToken} />
       <Title title="WishlistR" align="center" />
       <ScrollView style={styles.scrollView}>{items}</ScrollView>
     </Screen>
