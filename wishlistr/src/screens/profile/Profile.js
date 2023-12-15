@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useContext, useState } from "react";
 import Toast from "react-native-toast-message";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteToken } from "../../apis/store";
 import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigations";
@@ -22,12 +22,25 @@ import settingsPic from "../../../assets/settings-128.png";
 import * as Animatable from "react-native-animatable";
 import ReadOnlyTextInput from "../../components/readOnly/ReadOnlyTextInput";
 import giftPic from "../../../assets/gift-128.png";
+import { getMyProfile } from "../../apis/profile";
+import { BASE_URL } from "../../apis";
 
 const Profile = () => {
   const theme = useTheme();
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigation();
-
+  const { data: profile, isLoading } = useQuery({
+    queryKey: ["profile"],
+    queryFn: () => getMyProfile(),
+  });
+  if (isLoading) {
+    <View>
+      <Text style={{ padding: 50, color: "white" }}>
+        Fetching Data from the server
+      </Text>
+    </View>;
+  }
+  console.log(BASE_URL + "/" + profile?.image);
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -68,7 +81,7 @@ const Profile = () => {
             fontWeight: "bold",
           }}
         >
-          A.Hasan
+          {profile?.name.firstName + " " + profile?.name.lastName}
         </Text>
         <Text style={{ fontSize: 12 }}>24/05/1992</Text>
         <TouchableOpacity
@@ -300,7 +313,7 @@ const Profile = () => {
         </ScrollView>
       </View>
       <Image
-        source={defaultPic}
+        source={{ uri: profile?.image }}
         style={{
           width: 100,
           height: 100,

@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as SecureStore from "expo-secure-store";
 
 const BASE_URL = "https://hammerhead-app-kz3f9.ondigitalocean.app/api";
 
