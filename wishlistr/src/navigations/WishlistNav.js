@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
-import Wishlist from "../screens/wishlist/Wishlist"
+import Wishlist from "../screens/wishList/Wishlist";
 
 const WishlistNav = () => {
   const Stack = createStackNavigator();

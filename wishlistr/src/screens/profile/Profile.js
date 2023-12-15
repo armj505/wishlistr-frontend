@@ -37,12 +37,6 @@ const Profile = () => {
           justifyContent: "center",
         }}
       >
-        <TouchableOpacity
-          onPress={() => navigate.navigate(ROUTES.PROFILE.PROFILE.SETTINGS)}
-          style={{ alignSelf: "flex-end", paddingRight: 20 }}
-        >
-          <Image source={settingsPic} style={{ width: 25, height: 25 }} />
-        </TouchableOpacity>
         <Text
           style={{
             color: theme.colors.surface,
@@ -77,6 +71,22 @@ const Profile = () => {
           A.Hasan
         </Text>
         <Text style={{ fontSize: 12 }}>24/05/1992</Text>
+        <TouchableOpacity
+          onPress={() => navigate.navigate(ROUTES.PROFILE.PROFILE.EDITPROFILE)}
+          style={{
+            backgroundColor: "gray",
+            width: 180,
+            justifyContent: "center",
+            alignItems: "center",
+            paddingVertical: 5,
+            borderRadius: 10,
+            elevation: 20,
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>
+            Edit Profile
+          </Text>
+        </TouchableOpacity>
         <View
           style={{
             width: "100%",
