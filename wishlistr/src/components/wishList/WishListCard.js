@@ -1,106 +1,81 @@
-import { StyleSheet, Text, View, Image, Touchable } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Touchable,
+  Linking,
+  Pressable,
+} from "react-native";
+import React, { useState } from "react";
 import { Button } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Title from "../ui/Title";
+import WebView from "react-native-webview";
+import { useNavigation } from "@react-navigation/native";
+import ROUTES from "../../navigations";
+import HeaderIcon from "../ui/HeaderIcon";
+
+import MyEditModal from "../../components/modal/MyEditModal";
+import MyModal from "../modal/MyModal";
+
 const WishListCard = ({ list }) => {
+  const handlePress = () => {
+    // Open the web URL when long-pressed
+    Linking.openURL("http://192.168.8.118:3000");
+  };
+  // const [modalVisible, setModalVisible] = useState(false);
+
+  // const [modalVisible, setModalVisible] = useState(false);
+  // const openModal = () => {
+  //   setModalVisible(true);
+  // };
+
+  // const closeModal = () => {
+  //   setModalVisible(false);
+  // };
+  // const handleSubmit = (text) => {
+  //   console.log("Submitted text:", text);
+  //   closeModal();
+  // };
+
+  // const navigation = useNavigation();
+
+  // const handlerLongClick = () => {
+  //   console.log("Button Long Pressed");
+  // };
+
   return (
-    <TouchableOpacity>
-      <View style={styles.container}>
-        <Image source={{ uri: list.image }} style={styles.image} />
-        <View style={styles.textContainer}>
-          {/* <View style={styles.iconContainer}>
-            <Text style={styles.icon}>
-              {list.name.match(/[\p{Emoji}\u200d]+/gu)}
-            </Text>
-          </View> */}
-          <View style={styles.titleText}>
-            <Text style={styles.text} numberOfLines={2}>
-              {list.name}
-            </Text>
-            <Text style={styles.textItems}>{list.items.length} items</Text>
+    <View>
+      <Button style={{ backgroundColor: "red" }} onLongPress={handlePress}>
+        web
+      </Button>
+
+      <TouchableOpacity
+      // onLongPress={openModal}>
+      >
+        <View style={styles.container}>
+          <Image source={{ uri: list.image }} style={styles.image} />
+          <View style={styles.textContainer}>
+            <View style={styles.titleText}>
+              <Text style={styles.text} numberOfLines={2}>
+                {list.name}
+              </Text>
+              <Text style={styles.textItems}>{list.items.length} items</Text>
+            </View>
           </View>
         </View>
-      </View>
-    </TouchableOpacity>
-    // <TouchableOpacity>
-    //   <View
-    //     style={{
-    //       alignItems: "center",
-    //       flexDirection: "row",
-    //       height: 96,
-    //       width: "100%",
-    //       borderRadius: 32,
-    //       overflow: "hidden",
-    //       marginTop: 24,
-    //     }}
-    //   >
-    //     <View
-    //       style={{
-    //         // backgroundColor: "",
-    //         width: "20%",
-    //         height: "100%",
-    //         justifyContent: "center",
-    //         alignItems: "center",
-    //       }}
-    //     >
-    //       <View
-    //         style={{
-    //           width: 40,
-    //           height: 40,
-    //           backgroundColor: "white",
-    //           borderRadius: 50,
-    //           justifyContent: "center",
-    //           alignItems: "center",
-    //           overflow: "hidden",
-    //         }}
-    //       >
-    //         <Text style={{ fontSize: 24 }}>🔄️</Text>
-    //       </View>
-    //     </View>
-    //     <View
-    //       style={{
-    //         backgroundColor: "gold",
-    //         width: "80%",
-    //         height: "100%",
-    //         position: "relative",
-    //         zIndex: 3,
-    //       }}
-    //     >
-    //       <View
-    //         style={{
-    //           width: "100%",
-    //           height: "100%",
-    //           position: "absolute",
-    //           backgroundColor: "#ffffff88",
-    //           zIndex: 2,
-    //           justifyContent: "center",
-    //           alignItems: "flex-start",
-    //         }}
-    //       >
-    //         <Text
-    //           style={{
-    //             color: "white",
-    //           }}
-    //         >
-    //           {list.name}
-    //         </Text>
-    //       </View>
-    //       <Image
-    //         style={{
-    //           width: "100%",
-    //           height: "100%",
-    //           position: "absolute",
-    //           zIndex: 1,
-    //         }}
-    //         source={{
-    //           uri: list.image,
-    //         }}
-    //       />
-    //     </View>
-    //   </View>
-    // </TouchableOpacity>
+
+        {/* <View>
+          <MyModal
+            visible={modalVisible}
+            onClose={closeModal}
+            onSubmit={handleSubmit}
+          />
+        </View> */}
+      </TouchableOpacity>
+    </View>
   );
 };
 
