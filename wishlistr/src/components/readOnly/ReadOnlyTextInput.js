@@ -2,16 +2,28 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { TextInput } from "react-native-paper";
 
-const ReadOnlyTextInput = ({ label, value, w, h, editable }) => {
+const ReadOnlyTextInput = ({
+  label,
+  value,
+  w,
+  h,
+  editable,
+  onChangeText,
+  defaultValue,
+  placeholder,
+}) => {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
       <TextInput
         value={value}
+        placeholder={placeholder}
         style={{ width: w, height: h }}
         editable={editable}
         pointerEvents="none"
         mode="outlined"
+        onChangeText={onChangeText}
+        defaultValue={defaultValue}
       />
     </View>
   );
