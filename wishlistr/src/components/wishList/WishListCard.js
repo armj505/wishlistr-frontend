@@ -5,25 +5,56 @@ import {
   Image,
   Touchable,
   Linking,
+  Pressable,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Title from "../ui/Title";
 import WebView from "react-native-webview";
+import { useNavigation } from "@react-navigation/native";
+import ROUTES from "../../navigations";
+import HeaderIcon from "../ui/HeaderIcon";
+
+import MyEditModal from "../../components/modal/MyEditModal";
+import MyModal from "../modal/MyModal";
 
 const WishListCard = ({ list }) => {
   const handlePress = () => {
     // Open the web URL when long-pressed
     Linking.openURL("http://192.168.8.118:3000");
   };
+  // const [modalVisible, setModalVisible] = useState(false);
+
+  // const [modalVisible, setModalVisible] = useState(false);
+  // const openModal = () => {
+  //   setModalVisible(true);
+  // };
+
+  // const closeModal = () => {
+  //   setModalVisible(false);
+  // };
+  // const handleSubmit = (text) => {
+  //   console.log("Submitted text:", text);
+  //   closeModal();
+  // };
+
+  // const navigation = useNavigation();
+
+  // const handlerLongClick = () => {
+  //   console.log("Button Long Pressed");
+  // };
+
   return (
     <View>
       <Button style={{ backgroundColor: "red" }} onLongPress={handlePress}>
         web
       </Button>
-      <TouchableOpacity>
+
+      <TouchableOpacity
+      // onLongPress={openModal}>
+      >
         <View style={styles.container}>
           <Image source={{ uri: list.image }} style={styles.image} />
           <View style={styles.textContainer}>
@@ -35,19 +66,18 @@ const WishListCard = ({ list }) => {
             </View>
           </View>
         </View>
+
+        {/* <View>
+          <MyModal
+            visible={modalVisible}
+            onClose={closeModal}
+            onSubmit={handleSubmit}
+          />
+        </View> */}
       </TouchableOpacity>
     </View>
   );
 };
-
-// const MyWebView = () => {
-//   return (
-//     <WebView
-//       source={{ uri: "https://google.com/" }}
-//       // Other WebView props can be added here
-//     />
-//   );
-// };
 
 export default WishListCard;
 

@@ -1,12 +1,12 @@
 import { instance } from ".";
 
 const getAllWishlists = async () => {
-  const { data } = await instance.get("/api/wishlist");
+  const { data } = await instance.get("/wishlist");
   return data;
 };
 
 const createList = async (info) => {
-  const { data } = await instance.post("/api/wishlist", info);
+  const { data } = await instance.post("/wishlist", info);
 
   return data;
 };
