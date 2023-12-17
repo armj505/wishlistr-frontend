@@ -1,20 +1,46 @@
 import { instance } from ".";
 
 const getMyProfile = async () => {
-  try {
-    const response = await instance.get("/user");
-    const userData = response.data;
-
-    if (userData.image) {
-      return userData.image;
-    } else {
-      return "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
-    }
-  } catch (error) {
-    console.error("Error fetching user profile:", error);
-
-    return "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
-  }
+  const response = await instance.get("/user");
+  return response.data;
 };
 
-export { getMyProfile };
+const updateMyProfile = async (
+  firstName,
+  lastName,
+  gender,
+  email,
+  phoneNumber,
+  image
+) => {
+  const formData = new FormData();
+  if (firstName) {
+    formData.append("name[firstName]", firstName);
+  }
+  if (lastName) {
+    formData.append("name[lastName]", lastName);
+  }
+  if (gender) {
+    formData.append("gender", gender);
+  }
+  if (email) {
+    formData.append("email", email);
+  }
+  if (phoneNumber) {
+    formData.append("phoneNumber", phoneNumber);
+  }
+
+  if (image !== null && image !== undefined) {
+    formData.append("image", image);
+  }
+  const response = await instance.put("/user", formData);
+  return response.data;
+};
+const testUpdate = async (gender) => {
+  const response = await instance.put("/user", {
+    gender,
+  });
+  return response.data;
+};
+
+export { getMyProfile, updateMyProfile };

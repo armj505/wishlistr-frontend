@@ -37,4 +37,23 @@ const resetPassword = async (resetToken, password) => {
   return response.data;
 };
 
-export { register, login, forgotPassword, resetPassword };
+const changePassword = async (currentPassword, newPassword) => {
+  const response = await instance.put("/auth/changePassword", {
+    currentPassword,
+    newPassword,
+  });
+  return response.data;
+};
+const deleteAccount = async () => {
+  const response = await instance.delete("/user");
+  return response.data;
+};
+
+export {
+  register,
+  login,
+  forgotPassword,
+  resetPassword,
+  changePassword,
+  deleteAccount,
+};

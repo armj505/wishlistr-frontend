@@ -33,6 +33,9 @@ const Profile = () => {
     queryKey: ["profile"],
     queryFn: () => getMyProfile(),
   });
+  const profileImage = profile?.image
+    ? { uri: BASE_URL + "/" + profile.image }
+    : defaultPic;
   if (isLoading) {
     <View>
       <Text style={{ padding: 50, color: "white" }}>
@@ -313,7 +316,7 @@ const Profile = () => {
         </ScrollView>
       </View>
       <Image
-        source={{ uri: profile?.image }}
+        source={profileImage}
         style={{
           width: 100,
           height: 100,
