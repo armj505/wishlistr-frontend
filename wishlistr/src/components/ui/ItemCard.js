@@ -4,6 +4,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import ROUTES from "../../navigations";
+import { BASE_URL } from "../../apis";
+import { LinearGradient } from "expo-linear-gradient";
 
 const ItemCard = ({ item, wishList }) => {
   const navigation = useNavigation();
@@ -20,15 +22,22 @@ const ItemCard = ({ item, wishList }) => {
           console.log("like");
         }}
       >
-        <View style={[styles.container, { backgroundColor: colors.card }]}>
-          <View style={styles.imageContainer}>
-            <Image source={{ uri: item.image }} style={styles.image} />
-          </View>
-          <View style={styles.textContainer}>
-            <Text numberOfLines={1} style={styles.text}>
-              {item.name}
-            </Text>
-          </View>
+        <View
+          style={[styles.container, { backgroundColor: colors.background }]}
+        >
+          <LinearGradient
+            colors={["#00000000", "#fff"]}
+            style={{ width: "100%", height: "100%" }}
+          >
+            <View style={styles.imageContainer}>
+              <Image source={{ uri: item.image }} style={styles.image} />
+            </View>
+            <View style={styles.textContainer}>
+              <Text numberOfLines={1} style={styles.text}>
+                {item.name}
+              </Text>
+            </View>
+          </LinearGradient>
         </View>
       </TouchableOpacity>
       {!wishList ? (
@@ -54,7 +63,7 @@ export default ItemCard;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 192,
+    height: 224,
     borderRadius: 16,
     marginBottom: 8,
     overflow: "hidden",
@@ -64,6 +73,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
+    height: 192,
     overflow: "hidden",
     backgroundColor: "white",
     flex: 1,

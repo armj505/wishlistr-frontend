@@ -1,7 +1,7 @@
 import { instance } from ".";
 
-const getAllWishlists = async () => {
-  const { data } = await instance.get("");
+const getAllWishlist = async () => {
+  const { data } = await instance.get("/wishlist");
   return data;
 };
 
@@ -18,3 +18,5 @@ const deleteWishlist = async (wishlistId) => {
   const { data } = await instance.delete(`/wishlist/${wishlistId}`);
   return data;
 };
+
+export { getAllWishlist };
