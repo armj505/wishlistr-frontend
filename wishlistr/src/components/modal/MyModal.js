@@ -21,7 +21,7 @@
 //     },
 //     onSuccess: () => {
 //       onClose();
-//       queryClient.invalidateQueries(["wishaList"]);
+//       queryClient.invalidateQueries(["wishList"]);
 //     },
 //   });
 //   return (

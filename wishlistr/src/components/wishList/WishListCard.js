@@ -7,54 +7,50 @@ import {
   Linking,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
-import { Button } from "react-native-paper";
+import React, { useRef, modalRef, useState } from "react";
+import { Button, Modal } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Title from "../ui/Title";
-import WebView from "react-native-webview";
-import { useNavigation } from "@react-navigation/native";
-import ROUTES from "../../navigations";
-import HeaderIcon from "../ui/HeaderIcon";
 
-import MyEditModal from "../../components/modal/MyEditModal";
-import MyModal from "../modal/MyModal";
+import EditTrashLink from "../editbottomsheet/EditTrashLink";
+import { Modalize } from "react-native-modalize";
+import { useQuery } from "@tanstack/react-query";
+import WishlistDetails from "../../screens/wishList/WishlistDetails";
+import { getwishlistdetails } from "../../apis/wishList";
 
 const WishListCard = ({ list }) => {
+  // const modalRef = useRef();
+
   const handlePress = () => {
     // Open the web URL when long-pressed
     Linking.openURL("http://192.168.8.118:3000");
   };
-  // const [modalVisible, setModalVisible] = useState(false);
 
-  // const [modalVisible, setModalVisible] = useState(false);
-  // const openModal = () => {
-  //   setModalVisible(true);
+  const modalizeRef = useRef(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  // const handleLongPress = (itemId) => {
+  //   setSelectedItemId(itemId);
+  //   modalizeRef.current?.open();
   // };
 
-  // const closeModal = () => {
-  //   setModalVisible(false);
-  // };
-  // const handleSubmit = (text) => {
-  //   console.log("Submitted text:", text);
-  //   closeModal();
-  // };
+  const handleDelete = () => {
+    console.log("deleting");
+  };
 
-  // const navigation = useNavigation();
-
-  // const handlerLongClick = () => {
-  //   console.log("Button Long Pressed");
-  // };
+  const handleLongPressOnw = () => {
+    setModalVisible(true);
+  };
 
   return (
     <View>
-      <Button style={{ backgroundColor: "red" }} onLongPress={handlePress}>
+      <Button
+        style={{ backgroundColor: "tomato", margin: 10 }}
+        onLongPress={handlePress}
+      >
         web
       </Button>
 
-      <TouchableOpacity
-      // onLongPress={openModal}>
-      >
+      <TouchableOpacity>
         <View style={styles.container}>
           <Image source={{ uri: list.image }} style={styles.image} />
           <View style={styles.textContainer}>
@@ -62,18 +58,13 @@ const WishListCard = ({ list }) => {
               <Text style={styles.text} numberOfLines={2}>
                 {list.name}
               </Text>
+
               <Text style={styles.textItems}>{list.items.length} items</Text>
             </View>
           </View>
-        </View>
 
-        {/* <View>
-          <MyModal
-            visible={modalVisible}
-            onClose={closeModal}
-            onSubmit={handleSubmit}
-          />
-        </View> */}
+          <EditTrashLink />
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -92,6 +83,7 @@ const styles = StyleSheet.create({
     padding: 8,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "flex-start",
   },
   image: {
     width: 80,
@@ -108,24 +100,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
   },
-  // iconContainer: {
-  //   justifyContent: "center",
-  //   backgroundColor: "white",
-  //   width: 48,
-  //   height: 48,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   borderRadius: 50,
-  //   overflow: "hidden",
-  //   borderWidth: 4,
-  //   borderColor: "#eeeeee",
-  // },
-  // icon: {
-  //   fontSize: 32,
-  //   padding: 0,
-  //   right: 0,
-  //   top: 0,
-  // },
+  bottomSheetContent: {
+    padding: 16,
+    backgroundColor: "white",
+  },
+
   text: {
     fontSize: 16,
     fontWeight: "bold",

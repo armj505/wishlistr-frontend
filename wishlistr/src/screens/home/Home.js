@@ -10,6 +10,7 @@ import NotificationExample from "../../components/notification/CreateNotificatio
 import NotificationPermission from "../../components/notification/RequestPermissions";
 
 const Home = () => {
+
   const { data: items_ } = useQuery({
     queryKey: ["items"],
     queryFn: () => getAllItems(),
@@ -29,12 +30,16 @@ const Home = () => {
 
   const items = itemat?.map((item) => <ItemCard item={item} key={item._id} />);
 
+
   console.log({ expoPushToken });
   return (
     <Screen>
       <NotificationPermission setExpoPushToken={setExpoPushToken} />
+
+      
       {/* <Title title="WishlistR" align="center" /> */}
       <ScrollView style={styles.scrollView}>{items}</ScrollView>
+
     </Screen>
   );
 };

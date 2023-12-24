@@ -5,15 +5,24 @@ const getAllWishlists = async () => {
   return data;
 };
 
-const createList = async (info) => {
-  const { data } = await instance.post("/wishlist", info);
+const createList = async (name) => {
+  const { data } = await instance.post("/wishlist", {
+    name,
+  });
 
   return data;
 };
 
 const deleteWishlist = async (wishlistId) => {
+  console.log("hereeee");
   const { data } = await instance.delete(`/wishlist/${wishlistId}`);
+  console.log(data);
   return data;
 };
 
-export { getAllWishlists, createList, deleteWishlist };
+const getwishlistdetails = async (wishlistId) => {
+  const response = await instance.get(`/wishlist/${wishlistId}`);
+  return response.data;
+};
+
+export { getAllWishlists, createList, deleteWishlist, getwishlistdetails };
