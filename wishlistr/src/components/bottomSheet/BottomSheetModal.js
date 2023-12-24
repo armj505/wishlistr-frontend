@@ -1,16 +1,89 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useContext, useRef } from "react";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Modalize } from "react-native-modalize";
 import { TextInput } from "react-native-paper";
 import { useTheme } from "react-native-paper";
 import UserContext from "../../context/UserContext";
 import { deleteToken } from "../../apis/store";
+import { useMutation } from "@tanstack/react-query";
+import { changePassword, deleteAccount } from "../../apis/auth";
+import Toast from "react-native-toast-message";
 
 const BottomSheetModal = () => {
   const { user, setUser } = useContext(UserContext);
   const theme = useTheme();
   const modalizeRef = useRef(null);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newtPassword, setNewPassword] = useState("");
 
+  const { mutate: changePass } = useMutation({
+    mutationKey: ["cahngePassword"],
+    mutationFn: () => changePassword(currentPassword, newtPassword),
+    onSuccess: async () => {
+      Toast.show({
+        type: "success",
+        text1: "Change password successful",
+        text2: "Redirecting to login screen",
+        visibilityTime: 2000,
+      });
+    },
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        text1: "Password change failed",
+        text2: error.message || "An unexpected error occurred",
+        visibilityTime: 3000,
+      });
+    },
+  });
+
+  const { mutate: deletAcc } = useMutation({
+    mutationKey: ["deleteAccount"],
+    mutationFn: () => deleteAccount(),
+    onSuccess: async () => {
+      Toast.show({
+        type: "success",
+        text1: "Account has been deleted",
+      });
+      setTimeout(() => {
+        deleteToken();
+        setUser(false);
+      }, 2000);
+    },
+  });
+
+  const handleChangePassword = () => {
+    if (!currentPassword || !newtPassword) {
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Validation error",
+        text2: "All fields are required",
+        visibilityTime: 3000,
+      });
+      return;
+    }
+
+    changePass();
+  };
+  const confirmDeleteAccount = () => {
+    Alert.alert(
+      "Confirm Deletion",
+      "Are you sure you want to delete your account?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: () => {
+            deletAcc();
+          },
+        },
+      ]
+    );
+  };
   const onOpen = () => {
     modalizeRef.current?.open();
   };
@@ -28,7 +101,7 @@ const BottomSheetModal = () => {
             style={{
               width: "100%",
               height: 30,
-              borderBottomWidth: 1,
+
               borderColor: "white",
             }}
           >
@@ -40,13 +113,14 @@ const BottomSheetModal = () => {
             style={{
               width: "100%",
               height: 145,
-
-              alignItems: "center",
               borderBottomWidth: 1,
+              alignItems: "center",
+
               borderColor: "white",
             }}
           >
             <TextInput
+              onChangeText={(text) => setCurrentPassword(text)}
               placeholder="Current Password"
               style={{
                 width: "100%",
@@ -67,6 +141,7 @@ const BottomSheetModal = () => {
               }}
             >
               <TextInput
+                onChangeText={(text) => setNewPassword(text)}
                 placeholder="New Password"
                 style={{
                   width: "100%",
@@ -78,6 +153,7 @@ const BottomSheetModal = () => {
                 }}
               />
               <TouchableOpacity
+                onPress={handleChangePassword}
                 style={{
                   backgroundColor: "white",
                   marginTop: 8,
@@ -97,8 +173,10 @@ const BottomSheetModal = () => {
               width: "100%",
 
               height: 220,
+              flexDirection: "row",
 
               alignItems: "center",
+              justifyContent: "center",
               gap: 24,
             }}
           >
@@ -108,13 +186,13 @@ const BottomSheetModal = () => {
                 setUser(false);
               }}
               style={{
-                width: "99%",
+                width: "45%",
                 backgroundColor: theme.colors.outline,
                 justifyContent: "center",
                 alignItems: "center",
                 paddingVertical: 8,
                 borderRadius: 10,
-                marginTop: 50,
+                marginTop: 124,
               }}
             >
               <Text
@@ -124,13 +202,15 @@ const BottomSheetModal = () => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              onPress={confirmDeleteAccount}
               style={{
-                width: "99%",
+                width: "45%",
                 backgroundColor: "red",
                 justifyContent: "center",
                 alignItems: "center",
                 paddingVertical: 8,
                 borderRadius: 10,
+                marginTop: 124,
               }}
             >
               <Text

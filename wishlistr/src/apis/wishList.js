@@ -1,15 +1,12 @@
 import { instance } from ".";
 
-const getAllWishlist = async () => {
+const getAllWishlists = async () => {
   const { data } = await instance.get("/wishlist");
   return data;
 };
 
-const createList = async ({ listTitle, listIcon }) => {
-  const formData = new FormData();
-  formData.append("listTitle", listTitle);
-  formData.append("listIcon", listIcon);
-  const { data } = await instance.post(formData);
+const createList = async (info) => {
+  const { data } = await instance.post("/wishlist", info);
 
   return data;
 };
@@ -19,4 +16,4 @@ const deleteWishlist = async (wishlistId) => {
   return data;
 };
 
-export { getAllWishlist };
+export { getAllWishlists, createList, deleteWishlist };

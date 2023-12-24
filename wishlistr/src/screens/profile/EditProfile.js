@@ -1,14 +1,9 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useContext, useState } from "react";
-import UserContext from "../../context/UserContext";
-import { deleteToken } from "../../apis/store";
 import { Icon, Switch, useTheme } from "react-native-paper";
 import { TextInput } from "react-native-paper";
 import { Button } from "react-native-paper";
 import { Text } from "react-native-paper";
-import * as Animatable from "react-native-animatable";
-import settingsPic from "../../../assets/settings-128.png";
-import { TextArea } from "react-native-ui-lib";
 import arrowPic from "../../../assets/arrow.png";
 import defaultPic from "../../../assets/default.png";
 import plus from "../../../assets/plus.png";
@@ -16,15 +11,42 @@ import ReadOnlyTextInput from "../../components/readOnly/ReadOnlyTextInput";
 import { useNavigation } from "@react-navigation/core";
 import ROUTES from "../../navigations";
 import BottomSheetModal from "../../components/bottomSheet/BottomSheetModal";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getMyProfile, testUpdate, updateMyProfile } from "../../apis/profile";
+
 const EditProfile = () => {
-  const { user, setUser } = useContext(UserContext);
   const theme = useTheme();
   const navigation = useNavigation();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [image, setImage] = useState(null);
+
   const [isEditable, setIsEditable] = useState(false);
   const handleTextInputValue = () => {
     setIsEditable(true);
   };
+  const { data: myData, isLoading } = useQuery({
+    queryKey: ["myInfo"],
+    queryFn: () => getMyProfile(),
+  });
+  if (isLoading) {
+    <View>
+      <Text style={{ padding: 50, color: "white" }}>
+        Fetching Data from the server
+      </Text>
+    </View>;
+  }
+  const profileImage = myData?.image
+    ? { uri: BASE_URL + "/" + myData.image }
+    : defaultPic;
 
+  const { mutate } = useMutation({
+    mutationKey: ["updateProfile"],
+    mutationFn: () => testUpdate(gender),
+  });
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -47,7 +69,7 @@ const EditProfile = () => {
         >
           Edit Profile
         </Text>
-        <TouchableOpacity style={{ right: 10, marginTop: 32 }}>
+        <TouchableOpacity onPress={mutate} style={{ right: 10, marginTop: 32 }}>
           <Text style={{ color: theme.colors.surface }}>Save</Text>
         </TouchableOpacity>
       </View>
@@ -69,7 +91,7 @@ const EditProfile = () => {
             borderWidth: 1,
             borderColor: "black",
           }}
-          source={defaultPic}
+          source={profileImage}
         />
         <TouchableOpacity
           onPress={() => console.log("pressed")}
@@ -95,6 +117,7 @@ const EditProfile = () => {
             }}
           />
         </TouchableOpacity>
+
         <View
           style={{
             width: "100%",
@@ -110,16 +133,17 @@ const EditProfile = () => {
           <TouchableOpacity onPress={handleTextInputValue}>
             <ReadOnlyTextInput
               label="First Name"
-              value="Ahmed"
+              value={myData?.name?.firstName}
               h={35}
               w={160}
               editable={isEditable}
+              onChangeText={setFirstName}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleTextInputValue}>
             <ReadOnlyTextInput
               label="Last Name"
-              value="Hasan"
+              value={myData?.name?.lastName}
               h={35}
               w={160}
               editable={isEditable}
@@ -134,13 +158,13 @@ const EditProfile = () => {
             marginTop: 5,
           }}
         >
-          <TouchableOpacity onPress={handleTextInputValue}>
+          <TouchableOpacity>
             <ReadOnlyTextInput
               label="Gender"
-              value="male"
+              value={gender}
+              placeholder={myData?.gender}
               h={35}
               w={340}
-              editable={isEditable}
             />
           </TouchableOpacity>
         </View>
@@ -155,7 +179,7 @@ const EditProfile = () => {
           <TouchableOpacity onPress={handleTextInputValue}>
             <ReadOnlyTextInput
               label="Email address"
-              value="ahmed@wishlistr.com"
+              value={myData?.email}
               h={35}
               w={340}
             />
@@ -170,7 +194,17 @@ const EditProfile = () => {
           }}
         >
           <TouchableOpacity onPress={handleTextInputValue}>
-            <ReadOnlyTextInput label="Address" value="Kuwait" h={35} w={340} />
+            <ReadOnlyTextInput
+              label="Address"
+              value={
+                "city: " +
+                myData?.address?.city +
+                " street: " +
+                myData?.address.street
+              }
+              h={35}
+              w={340}
+            />
           </TouchableOpacity>
         </View>
         <View
@@ -184,7 +218,7 @@ const EditProfile = () => {
           <TouchableOpacity onPress={handleTextInputValue}>
             <ReadOnlyTextInput
               label="Phone Number"
-              value="123"
+              value={myData?.phoneNumber}
               h={35}
               w={340}
             />
