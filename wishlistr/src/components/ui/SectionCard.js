@@ -9,7 +9,12 @@ const SectionCard = ({ title, data, routeName, viewMore }) => {
   const navigation = useNavigation();
   const cardList = data;
   const dataCards = cardList?.map((tag) => (
-    <FilterCard category={tag} key={tag._id} routeName={routeName} />
+    <FilterCard
+      category={tag}
+      key={tag._id}
+      routeName={routeName}
+      param={{ tag: tag }}
+    />
   ));
   return (
     <View style={styles.container}>

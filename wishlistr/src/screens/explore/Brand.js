@@ -3,10 +3,11 @@ import React from "react";
 import Screen from "../../components/ui/Screen";
 import Title from "../../components/ui/Title";
 
-const Brand = () => {
+const Brand = ({ route }) => {
+  const { tag } = route.params;
   return (
     <Screen>
-      <Title title="Apple" />
+      <Title title={tag.name} />
     </Screen>
   );
 };

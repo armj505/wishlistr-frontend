@@ -25,8 +25,9 @@ export default function App() {
     dark: false,
     colors: {
       primary: "#edff00",
-      background: "#111",
-      card: "#dfdfdf",
+      background: "#efefef",
+      header: "#eee",
+      card: "#fff",
       text: "#000",
       border: "rgb(199, 199, 204)",
       notification: "rgb(255, 69, 58)",
@@ -37,6 +38,7 @@ export default function App() {
     colors: {
       primary: "#edff00",
       background: "#000",
+      header: "#03031a",
       card: "#202020",
       text: "#fff",
       border: "rgb(199, 199, 204)",
@@ -55,7 +57,7 @@ export default function App() {
               {user ? <MainNav /> : <AuthNav />}
             </NavigationContainer>
             <Toast />
-            <StatusBar style="light" />
+            <StatusBar style="auto" animated />
           </PaperProvider>
         </UserContext.Provider>
       </QueryClientProvider>
@@ -66,7 +68,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

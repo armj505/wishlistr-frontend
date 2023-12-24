@@ -11,7 +11,7 @@ const Screen = ({ children }) => {
       style={{
         backgroundColor: colors.background,
         flex: 1,
-        paddingTop: insets.top + 24,
+        // paddingTop: insets.top,
         // paddingBottom: insets.bottom,
         paddingLeft: insets.left + 20,
         paddingRight: insets.right + 20,

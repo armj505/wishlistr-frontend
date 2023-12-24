@@ -11,9 +11,9 @@ import Title from "../../components/ui/Title";
 import WishListCard from "../../components/wishList/WishListCard";
 import Screen from "../../components/ui/Screen";
 import { ScrollView } from "react-native-gesture-handler";
-import HeaderIcon from "../../components/ui/HeaderIcon";
 import { useQuery } from "@tanstack/react-query";
 import { getAllWishlists } from "../../apis/wishList";
+
 import { Button, Icon } from "react-native-paper";
 import MyModal from "../../components/modal/MyModal";
 import MyEditModal from "../../components/modal/MyEditModal";
@@ -23,6 +23,8 @@ import CreateWishlist from "./CreateWishlist";
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import ROUTES from "../../navigations";
 import WishlistDetails from "./WishlistDetails";
+
+
 
 const Wishlist_ = () => {
   const { colors } = useTheme();
@@ -72,7 +74,9 @@ const Wishlist_ = () => {
   return (
     <Screen>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+
         <Title title="Wishlists" />
+
 
         <View style={styles.iconContainer}>
           <TouchableOpacity></TouchableOpacity>

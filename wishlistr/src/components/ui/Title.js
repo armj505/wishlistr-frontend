@@ -5,7 +5,7 @@ import { useTheme } from "@react-navigation/native";
 const Title = ({ title, align }) => {
   const { colors } = useTheme();
   return (
-    <View style={[styles.container, { alignItems: align }]}>
+    <View style={[styles.container, { alignItems: align, color: colors.text }]}>
       <Text numberOfLines={1} style={styles.title}>
         {title}
       </Text>
@@ -20,12 +20,11 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     width: "100%",
-    height: "auto",
+    height: 80,
     borderRadius: 16,
   },
   title: {
     fontSize: 32,
     fontWeight: "800",
-    color: "white",
   },
 });

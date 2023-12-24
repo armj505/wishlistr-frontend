@@ -2,8 +2,11 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-const Search = () => {
-  const [search, setSearch] = useState("");
+const Search = ({ setQuery }) => {
+  const searchItem = (e) => {
+    setQuery(e);
+    console.log(e);
+  };
 
   return (
     <View style={styles.container}>
@@ -12,7 +15,7 @@ const Search = () => {
         <TextInput
           style={styles.input}
           placeholder="Search in WishlistR"
-          onChangeText={(e) => setSearch(e)}
+          onChangeText={searchItem}
           clearButtonMode="always"
         ></TextInput>
         {/* {search === "" ? (
