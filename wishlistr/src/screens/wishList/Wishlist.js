@@ -24,8 +24,6 @@ import PrimaryButton from "../../components/ui/PrimaryButton";
 import ROUTES from "../../navigations";
 import WishlistDetails from "./WishlistDetails";
 
-
-
 const Wishlist_ = () => {
   const { colors } = useTheme();
   const navigate = useNavigation();
@@ -65,18 +63,11 @@ const Wishlist_ = () => {
       </View>
     );
   }
-  // const navigateToWishlistDetails = (wishlistId) => {
-  //   navigate.navigate(ROUTES.WISHLIST.WISHLISTDETAILS, {
-  //     wishlistId: data._id,
-  //   });
-  // };
 
   return (
     <Screen>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-
         <Title title="Wishlists" />
-
 
         <View style={styles.iconContainer}>
           <TouchableOpacity></TouchableOpacity>

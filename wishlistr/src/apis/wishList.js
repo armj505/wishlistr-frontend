@@ -14,10 +14,16 @@ const createList = async (name) => {
 };
 
 const deleteWishlist = async (wishlistId) => {
-  console.log("hereeee");
-  const { data } = await instance.delete(`/wishlist/${wishlistId}`);
-  console.log(data);
-  return data;
+  const response = await instance.delete(`/wishlist/${wishlistId}`);
+
+  return response.data;
+};
+const updateListName = async (wishlistId, name) => {
+  const response = await instance.put(`/wishlist/${wishlistId}`, {
+    name,
+  });
+
+  return response.data;
 };
 
 const getwishlistdetails = async (wishlistId) => {
@@ -25,4 +31,10 @@ const getwishlistdetails = async (wishlistId) => {
   return response.data;
 };
 
-export { getAllWishlists, createList, deleteWishlist, getwishlistdetails };
+export {
+  getAllWishlists,
+  createList,
+  deleteWishlist,
+  getwishlistdetails,
+  updateListName,
+};
