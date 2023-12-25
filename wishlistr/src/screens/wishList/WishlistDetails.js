@@ -1,18 +1,36 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { useRoute, useTheme } from "@react-navigation/native";
-import { getwishlistdetails } from "../../apis/wishList";
-import { useQuery } from "@tanstack/react-query";
-import { Icon } from "react-native-paper";
-import arrow from "../../../assets/arrow.png";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import { useNavigation, useRoute, useTheme } from "@react-navigation/native";
+import {
+  deleteWishlist,
+  getwishlistdetails,
+  updateListName,
+} from "../../apis/wishList";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import kebab from "../../../assets/kebab.png";
-import cancel from "../../../assets/cancel.png";
-import gift from "../../../assets/gift-128.png";
+import { Menu, Divider } from "react-native-paper"; // Import Menu and Divider from react-native-paper
+import kebab from "../../../assets/blackDots.png";
+import shirt from "../../../assets/st2.jpg";
+import cancel from "../../../assets/b-cancel.png";
+import { LinearGradient } from "expo-linear-gradient";
+import ROUTES from "../../navigations";
+import { Share } from "react-native";
 
 const WishlistDetails = () => {
+  const [isMenuVisible, setMenuVisible] = useState(false);
+  const [listName, setListName] = useState("");
+  const [isEditing, setEditing] = useState(false);
+  const [editedListName, setEditedListName] = useState("");
   const theme = useTheme();
-
+  const navigation = useNavigation();
+  const query = useQueryClient();
   const route = useRoute();
   const { wishlistId } = route.params;
 
@@ -21,70 +39,138 @@ const WishlistDetails = () => {
     queryFn: () => getwishlistdetails(wishlistId),
   });
 
-  const wishlistName = listdetails?.name || "Loading ...."; // Replace "No Name" with a default value
+  const openMenu = () => setMenuVisible(true);
+  const closeMenu = () => setMenuVisible(false);
+
+  const { mutate: deleteList } = useMutation({
+    mutationKey: ["deleteList"],
+    mutationFn: () => deleteWishlist(wishlistId),
+    onSuccess: () => {
+      navigation.navigate(ROUTES.WISHLIST.WISHLIST.WISHLIST);
+      query.invalidateQueries("wishaList");
+    },
+  });
+
+  const { mutate: updateList } = useMutation({
+    mutationKey: ["updateList"],
+    mutationFn: () => updateListName(wishlistId, editedListName),
+    onSuccess: () => {
+      setEditing(false);
+      query.invalidateQueries("wishlistdetails");
+    },
+  });
+
+  useEffect(() => {
+    setListName(listdetails?.name || "wait...");
+    setEditedListName(listdetails?.name || "");
+  }, [listdetails]);
+
+  const handleListNamePress = () => {
+    setEditing(true);
+  };
+
+  const handleListNameChange = (text) => {
+    setEditedListName(text);
+  };
+  const handleListNameSubmit = () => {
+    updateList();
+  };
+  ////////////////////////////////////////
+  const handleShare = () => {
+    closeMenu();
+
+    const deepLink = `https://hammerhead-app-kz3f9.ondigitalocean.app/WishlistDetails?wishlistId=${wishlistId}`;
+    const shareMessage = `Check out my wishlist: ${deepLink}`;
+
+    Share.share({
+      message: shareMessage,
+    }).catch((error) =>
+      console.error("Error sharing wishlist:", error.message)
+    );
+  };
+
+  ///////////////////////////////////////
 
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: "navy",
       }}
     >
-      <View
+      <LinearGradient
+        colors={["#edff00ee", "#ffffff00"]}
         style={{
-          flex: 1,
-          backgroundColor: "navy",
-          flexDirection: "row",
+          width: "100%",
+          flex: 1.5,
           justifyContent: "space-between",
+          flexDirection: "row",
           alignItems: "center",
         }}
       >
-        <TouchableOpacity>
-          <Image
-            source={arrow}
-            style={{ marginTop: 10, width: 35, height: 25, marginLeft: 10 }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            source={kebab}
-            style={{ marginTop: 10, width: 35, height: 25, marginLeft: 10 }}
-          />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          flex: 9,
-          backgroundColor: "white",
-          borderTopLeftRadius: 100,
-          borderWidth: 5,
-          borderColor: "silver",
-        }}
-      >
-        <View
-          style={{
-            width: "100%",
-            // backgroundColor: "pink",
-            marginTop: 15,
-            height: 50,
-          }}
-        >
-          <Text
+        {isEditing ? (
+          <TextInput
             style={{
               fontSize: 20,
               fontWeight: "bold",
-              marginLeft: 50,
-              marginTop: 10,
+              marginLeft: 24,
+              marginTop: 16,
             }}
-          >
-            {wishlistName}
-          </Text>
-        </View>
+            value={editedListName}
+            onChangeText={handleListNameChange}
+            onBlur={handleListNameSubmit}
+            autoFocus
+          />
+        ) : (
+          <TouchableOpacity onPress={handleListNamePress}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                marginLeft: 24,
+                marginTop: 16,
+              }}
+            >
+              {listName}
+            </Text>
+          </TouchableOpacity>
+        )}
+        <Menu
+          visible={isMenuVisible}
+          onDismiss={closeMenu}
+          anchor={
+            <TouchableOpacity onPress={openMenu}>
+              <Image
+                source={kebab}
+                style={{ width: 24, height: 24, marginLeft: 10 }}
+              />
+            </TouchableOpacity>
+          }
+        >
+          <Menu.Item
+            title="Share"
+            leadingIcon={"share"}
+            onPress={handleShare}
+          />
+
+          <Menu.Item
+            onPress={deleteList}
+            title="Delete"
+            leadingIcon={"delete"}
+            titleStyle={{ color: "red" }}
+          />
+          <Divider />
+          <Menu.Item onPress={closeMenu} title="Close" leadingIcon={"close"} />
+        </Menu>
+      </LinearGradient>
+      <View
+        style={{
+          flex: 8.5,
+        }}
+      >
         <ScrollView
           style={{
             width: "100%",
             height: 400,
-            // backgroundColor: "green",
           }}
         >
           <View
@@ -95,14 +181,13 @@ const WishlistDetails = () => {
               justifyContent: "space-evenly",
               alignItems: "center",
               gap: 10,
-              paddingTop: 50,
             }}
           >
             <View
               style={{
                 width: "90%",
                 height: 170,
-                backgroundColor: "gray",
+                backgroundColor: "white",
                 borderRadius: 20,
                 flexDirection: "column",
                 alignItems: "center",
@@ -111,7 +196,7 @@ const WishlistDetails = () => {
               <View
                 style={{
                   width: "100%",
-                  // backgroundColor: "red",
+
                   height: 20,
                 }}
               >
@@ -119,10 +204,9 @@ const WishlistDetails = () => {
                   <Image
                     source={cancel}
                     style={{
-                      marginTop: 10,
-                      width: 12,
-                      height: 12,
-                      marginRight: 10,
+                      width: 24,
+                      height: 24,
+                      marginRight: 4,
                       alignSelf: "flex-end",
                     }}
                   />
@@ -140,33 +224,63 @@ const WishlistDetails = () => {
               >
                 <View
                   style={{
-                    width: "45%",
-                    // backgroundColor: "pink",
-                    height: 120,
-                    borderRadius: 12,
+                    width: 140,
+
+                    height: 140,
+                    borderRadius: 20,
                     marginLeft: 10,
                     alignItems: "center",
                     justifyContent: "center",
+                    marginBottom: 10,
                   }}
                 >
                   <TouchableOpacity>
                     <Image
-                      source={gift}
+                      source={shirt}
                       style={{
-                        width: 100,
-                        height: 100,
+                        width: 140,
+                        height: 140,
+                        borderRadius: 20,
                       }}
                     />
                   </TouchableOpacity>
                 </View>
-                <Text
+                <View
                   style={{
-                    fontSize: 15,
-                    fontWeight: "bold",
+                    width: "40%",
+
+                    height: 120,
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  Omar Nora Ahmed
-                </Text>
+                  <Text
+                    style={{
+                      fontSize: 15,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Black T-shirt
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 15,
+                      fontWeight: "bold",
+                      marginTop: 10,
+                    }}
+                  >
+                    Brand: xxx
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 15,
+                      fontWeight: "bold",
+                      marginTop: 10,
+                    }}
+                  >
+                    Vendor: xxx
+                  </Text>
+                </View>
               </View>
             </View>
           </View>

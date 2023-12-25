@@ -9,17 +9,17 @@ const ItemDetails = ({ route }) => {
   const { item } = route.params;
   return (
     <Screen>
-      {/* <Title title={item.name} /> */}
+      <Title title={item?.name} />
       <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
           <View style={styles.imageContainer}>
             <View>
-              <Image source={{ uri: item.image }} style={styles.image} />
+              <Image source={{ uri: item?.image }} style={styles.image} />
             </View>
           </View>
-          <Text style={styles.brandText}>{item.brand.name}</Text>
-          <Text style={styles.itemTitle}>{item.name}</Text>
-          <Text style={styles.itemPrice}>{item.price} KD</Text>
+          <Text style={styles.brandText}>{item?.brand?.name}</Text>
+          <Text style={styles.itemTitle}>{item?.name}</Text>
+          <Text style={styles.itemPrice}>{item?.price} KD</Text>
           <PrimaryButton
             name="Add to Wishlist"
             press={() => console.log("button is pressed")}
