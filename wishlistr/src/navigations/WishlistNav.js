@@ -5,6 +5,7 @@ import ROUTES from ".";
 
 import Wishlist_ from "../screens/wishList/Wishlist";
 import WishlistDetails from "../screens/wishList/WishlistDetails";
+import SharedWishList from "../screens/wishList/SharedWishList";
 
 const WishlistNav = () => {
   const Stack = createStackNavigator();
@@ -18,6 +19,10 @@ const WishlistNav = () => {
       <Stack.Screen
         name={ROUTES.WISHLIST.WISHLIST.WISHLISTDETAILS}
         component={WishlistDetails}
+      />
+      <Stack.Screen
+        name={ROUTES.WISHLIST.WISHLIST.SHARE}
+        component={SharedWishList}
       />
     </Stack.Navigator>
   );

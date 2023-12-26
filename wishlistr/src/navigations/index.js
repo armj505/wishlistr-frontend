@@ -22,6 +22,7 @@ const ROUTES = {
       WISHLIST: "wishlist",
       ITEM: "item",
       WISHLISTDETAILS: "wishlist details",
+      SHARE: "share list",
     },
   },
   PROFILE: {
