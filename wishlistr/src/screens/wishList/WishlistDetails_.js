@@ -32,7 +32,7 @@ const WishlistDetails = () => {
   const [isEditing, setEditing] = useState(false);
   const [editedListName, setEditedListName] = useState("");
   const [selectedItemId, setSelectedItemId] = useState(null);
-  const theme = useTheme();
+  const { colors } = useTheme();
   const navigation = useNavigation();
   const query = useQueryClient();
   const route = useRoute();
@@ -136,7 +136,7 @@ const WishlistDetails = () => {
       }}
     >
       <LinearGradient
-        colors={["#edff00ee", "#ffffff00"]}
+        colors={[`${colors.primary}`, "#ffffff00"]}
         style={{
           width: "100%",
           flex: 1.5,
@@ -210,6 +210,9 @@ const WishlistDetails = () => {
             width: "100%",
             height: 400,
           }}
+          contentContainerStyle={{
+            paddingBottom: 100,
+          }}
         >
           <View
             style={{
@@ -239,7 +242,7 @@ const WishlistDetails = () => {
                 <Text style={{ fontSize: 16 }}>Your wishList is empty!</Text>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: "yellow",
+                    backgroundColor: "#8a8b8a",
                     paddingVertical: 10,
                     marginTop: 10,
                     width: 250,
@@ -249,7 +252,9 @@ const WishlistDetails = () => {
                   }}
                   onPress={() => navigation.navigate(ROUTES.HOME.HOME.HOME)}
                 >
-                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                  <Text
+                    style={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+                  >
                     Click to add items
                   </Text>
                 </TouchableOpacity>
@@ -334,15 +339,15 @@ const WishlistDetails = () => {
                       >
                         name: {item?.item?.name}
                       </Text>
-                      <Text
+                      {/* <Text
                         style={{
                           fontSize: 15,
                           fontWeight: "bold",
                           marginTop: 10,
                         }}
                       >
-                        Brand: xxx
-                      </Text>
+                        Brand: {item?.item?.brand}
+                      </Text> */}
                       <Text
                         style={{
                           fontSize: 15,

@@ -1,25 +1,16 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Touchable,
-  Linking,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View, Image, Linking } from "react-native";
 import React, { useRef, modalRef, useState } from "react";
 import { Button, Modal } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import EditTrashLink from "../editbottomsheet/EditTrashLink";
-import { Modalize } from "react-native-modalize";
-import { useQuery } from "@tanstack/react-query";
-import { getwishlistdetails } from "../../apis/wishList";
-import WishlistDetails from "../../screens/wishlist/WishlistDetails_";
+import { LinearGradient } from "expo-linear-gradient";
+import { useTheme } from "@react-navigation/native";
+import giftPic from "../../../assets/gift-128.png";
 
 const WishListCard = ({ list }) => {
   // const modalRef = useRef();
-
+  const { colors } = useTheme();
   const handlePress = () => {
     // Open the web URL when long-pressed
     Linking.openURL("http://192.168.8.118:3000");
@@ -40,20 +31,42 @@ const WishListCard = ({ list }) => {
   const handleLongPressOnw = () => {
     setModalVisible(true);
   };
-
+  console.log(list.items);
   return (
-    <View>
-      <Button
+    <View style={{}}>
+      {/* <Button
         style={{ backgroundColor: "tomato", margin: 10 }}
         onLongPress={handlePress}
       >
         web
-      </Button>
+      </Button> */}
 
       <TouchableOpacity>
-        <View style={styles.container}>
-          <Image source={{ uri: list.image }} style={styles.image} />
-          <View style={styles.textContainer}>
+        <LinearGradient
+          colors={[`${colors.gradient}`, "#8a8b8a33", "#00000011"]}
+          start={{ x: 0, y: 1 }}
+          end={{ x: 0, y: 0.2 }}
+          style={{
+            width: "100%",
+            height: "100%",
+            zIndex: 9,
+            position: "absolute",
+            // opacity: 1,
+          }}
+        />
+        <View style={[styles.container, {}]}>
+          <Image
+            source={
+              list.items.length == 0
+                ? giftPic
+                : { uri: list.items[0].item.image }
+            }
+            style={[
+              styles.image,
+              list.items.length == 0 && { backgroundColor: "black" },
+            ]}
+          />
+          <View style={[styles.textContainer, {}]}>
             <View style={styles.titleText}>
               <Text style={styles.text} numberOfLines={2}>
                 {list.name}
@@ -63,7 +76,7 @@ const WishListCard = ({ list }) => {
             </View>
           </View>
 
-          <EditTrashLink />
+          {/* <EditTrashLink /> */}
         </View>
       </TouchableOpacity>
     </View>

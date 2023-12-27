@@ -7,7 +7,6 @@ import UserContext from "../../context/UserContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Toast from "react-native-toast-message";
 import { createList, deleteWishlist } from "../../apis/wishList";
-import CreateWishlist from "../../screens/wishlist/CreateWishlist";
 
 const Create = () => {
   const theme = useTheme();
@@ -41,8 +40,11 @@ const Create = () => {
   };
   return (
     <>
-      <TouchableOpacity style={styles.openTitle} onPress={onOpen}>
-        <Text style={{ color: "black", fontSize: 16, fontWeight: "bold" }}>
+      <TouchableOpacity
+        style={[styles.openTitle, { backgroundColor: "#8a8b8a" }]}
+        onPress={onOpen}
+      >
+        <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
           Create new WishList
         </Text>
       </TouchableOpacity>
@@ -56,7 +58,9 @@ const Create = () => {
               borderColor: "white",
             }}
           >
-            <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+            <Text
+              style={{ color: "#8A8B8A", fontWeight: "bold", fontSize: 16 }}
+            >
               Create Your New WishList
             </Text>
           </View>
@@ -72,6 +76,7 @@ const Create = () => {
             <TextInput
               onChangeText={(text) => setInputText(text)}
               value={inputText}
+              activeUnderlineColor="#fac260"
               placeholder="Name Your WishList"
               style={{
                 width: "100%",
@@ -93,7 +98,7 @@ const Create = () => {
               <TouchableOpacity
                 onPress={createWishList}
                 style={{
-                  backgroundColor: "#edff00",
+                  backgroundColor: "#8A8B8A",
                   marginTop: 30,
                   width: "90%",
                   paddingVertical: 5,
@@ -103,7 +108,7 @@ const Create = () => {
                 }}
               >
                 <Text
-                  style={{ color: "black", fontSize: 15, fontWeight: "bold" }}
+                  style={{ color: "#FFFF", fontSize: 15, fontWeight: "bold" }}
                 >
                   Submit
                 </Text>
@@ -128,7 +133,7 @@ const styles = StyleSheet.create({
   modalContent: {
     padding: 16,
     height: 500,
-    backgroundColor: "black",
+    backgroundColor: "#FAF7EC",
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },

@@ -11,6 +11,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteToken } from "../../apis/store";
 import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigations";
+import empty from "../../../assets/Empty-cuate.png";
 
 import UserContext from "../../context/UserContext";
 import { Icon, useTheme } from "react-native-paper";
@@ -55,7 +56,7 @@ const Profile = () => {
       >
         <Text
           style={{
-            color: theme.colors.surface,
+            color: "black",
             fontSize: 20,
             fontWeight: "bold",
             marginTop: 10,
@@ -73,7 +74,7 @@ const Profile = () => {
           borderTopRightRadius: 40,
           borderWidth: 6,
           borderStyle: "solid",
-          borderColor: theme.colors.surfaceVariant,
+          borderColor: "#fac260",
           alignItems: "center",
         }}
       >
@@ -118,13 +119,23 @@ const Profile = () => {
               color: "black",
               fontWeight: "bold",
               alignSelf: "center",
+              marginLeft: 10,
             }}
           >
             My Gifts
           </Text>
         </View>
+        <Text>No gifts yet!</Text>
 
-        <ScrollView
+        <Image
+          source={empty}
+          style={{
+            width: "100%",
+            height: "60%",
+          }}
+        />
+
+        {/* <ScrollView
           //start
           style={{
             width: "100%",
@@ -144,176 +155,9 @@ const Profile = () => {
               gap: 15,
             }}
           >
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
-            <View
-              style={{
-                width: 150,
-                height: 150,
-                backgroundColor: "black",
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image source={giftPic} style={{ width: 80, height: 80 }} />
-            </View>
+           
           </View>
-        </ScrollView>
+        </ScrollView> */}
       </View>
       <Image
         source={profileImage}
@@ -323,7 +167,7 @@ const Profile = () => {
           alignSelf: "center",
           borderRadius: 50,
           borderWidth: 6,
-          borderColor: theme.colors.surfaceVariant,
+          borderColor: "#fac260",
           position: "absolute",
           marginTop: 120,
         }}

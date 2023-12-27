@@ -11,7 +11,7 @@ const ItemCard = ({ item, wishList }) => {
   const [isAdded, setIsAdded] = useState(false);
   const { colors } = useTheme();
   return (
-    <View>
+    <View style={{}}>
       <TouchableOpacity
         onPress={() => {
           navigation.push(ROUTES.WISHLIST.WISHLIST.ITEM, {

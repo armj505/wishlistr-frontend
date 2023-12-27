@@ -10,7 +10,7 @@ const FilterCard = ({ category, text, routeName, param }) => {
   const { colors } = useTheme();
   return (
     <TouchableOpacity onPress={() => navigation.navigate(routeName, param)}>
-      <View style={styles.container}>
+      <View style={[styles.container, {}]}>
         <Image source={{ uri: category.image }} style={styles.image} />
         <LinearGradient
           colors={[`${colors.gradient}`, "#8a8b8a33", "#00000011"]}
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover",
+    resizeMode: "contain",
   },
 });

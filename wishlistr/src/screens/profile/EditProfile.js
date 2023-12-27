@@ -13,6 +13,7 @@ import ROUTES from "../../navigations";
 import BottomSheetModal from "../../components/bottomSheet/BottomSheetModal";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getMyProfile, testUpdate, updateMyProfile } from "../../apis/profile";
+import { AntDesign, EvilIcons } from "@expo/vector-icons";
 
 const EditProfile = () => {
   const theme = useTheme();
@@ -48,29 +49,33 @@ const EditProfile = () => {
     mutationFn: () => testUpdate(gender),
   });
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, height: "100%" }}>
       <View
         style={{
           flex: 1,
           justifyContent: "space-between",
-
-          alignItems: "center",
+          paddingTop: 20,
+          paddingHorizontal: 20,
           flexDirection: "row",
+          // alignContent: "center",
+          alignItems: "center",
         }}
       >
         <TouchableOpacity
           onPress={() => navigation.navigate(ROUTES.PROFILE.PROFILE.PROFILE)}
-          style={{ left: 10, marginTop: 32 }}
+          style={
+            {
+              // height: "100%",
+              // justifyContent: "center",
+              // alignItems: "center",
+            }
+          }
         >
-          <Image source={arrowPic} style={{ width: 25, height: 25 }} />
+          <AntDesign name="arrowleft" color="black" size={20} />
         </TouchableOpacity>
-        <Text
-          style={{ color: theme.colors.surface, fontSize: 18, marginTop: 32 }}
-        >
-          Edit Profile
-        </Text>
-        <TouchableOpacity onPress={mutate} style={{ right: 10, marginTop: 32 }}>
-          <Text style={{ color: theme.colors.surface }}>Save</Text>
+        <Text style={{ color: "black", fontSize: 18 }}>Edit Profile</Text>
+        <TouchableOpacity onPress={mutate} style={{}}>
+          <Text style={{ color: theme.colors.surface }}></Text>
         </TouchableOpacity>
       </View>
       <View

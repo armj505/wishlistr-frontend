@@ -1,4 +1,11 @@
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import FilterCard from "./FilterCard";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,10 +25,10 @@ const SectionCard = ({ title, data, routeName, text, viewMore }) => {
     />
   ));
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { flex: 1, width: "100%" }]}>
       {title ? <Text style={styles.title}>{title}</Text> : <></>}
-      <View>
-        <View style={styles.cardContainers}>
+      <ScrollView style={{ flex: 1 }}>
+        <View style={[styles.cardContainers, { width: "100%", flex: 1 }]}>
           {dataCards}
           {!viewMore ? (
             <></>
@@ -42,7 +49,7 @@ const SectionCard = ({ title, data, routeName, text, viewMore }) => {
             </TouchableOpacity>
           )}
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -61,7 +68,7 @@ const styles = StyleSheet.create({
   },
   cardContainers: {
     width: "100%",
-    height: "auto",
+    height: "100%",
     borderRadius: 16,
     marginBottom: 8,
     overflow: "hidden",

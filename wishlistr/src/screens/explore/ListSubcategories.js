@@ -8,6 +8,7 @@ import ROUTES from "../../navigations";
 
 const ListSubcategories = ({ route }) => {
   const { tag } = route.params;
+  console.log(tag);
   return (
     <Screen>
       <Title title={tag.name} />

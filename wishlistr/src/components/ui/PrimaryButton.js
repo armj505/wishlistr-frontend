@@ -9,7 +9,7 @@ const PrimaryButton = ({ name, press }) => {
     <TouchableOpacity onPress={press}>
       <View
         style={{
-          backgroundColor: colors.primary,
+          backgroundColor: "#8a8b8a",
           width: "100%",
           height: "auto",
           padding: 16,
@@ -18,7 +18,7 @@ const PrimaryButton = ({ name, press }) => {
           borderRadius: 8,
         }}
       >
-        <Text style={styles.text}>{name}</Text>
+        <Text style={[styles.text, { color: "white" }]}>{name}</Text>
       </View>
     </TouchableOpacity>
   );

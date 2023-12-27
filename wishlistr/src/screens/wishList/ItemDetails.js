@@ -76,49 +76,51 @@ const ItemDetails = ({ route }) => {
       </ScrollView>
       <Modal isVisible={isModalVisible} style={styles.modal}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Choose a Wishlist</Text>
-          {myLists?.map((oneList) => (
-            <TouchableOpacity
-              key={oneList._id}
-              onPress={() => {
-                setSelectedWishlist(oneList);
-                setSelectedWishlistId(oneList._id);
-              }}
-              style={[
-                styles.listItem,
-                selectedWishlistId === oneList._id && styles.selectedListItem,
-              ]}
-            >
-              <Text
+          <ScrollView>
+            <Text style={styles.modalTitle}>Choose a Wishlist</Text>
+            {myLists?.map((oneList) => (
+              <TouchableOpacity
+                key={oneList._id}
+                onPress={() => {
+                  setSelectedWishlist(oneList);
+                  setSelectedWishlistId(oneList._id);
+                }}
                 style={[
-                  styles.listItemText,
-                  selectedWishlistId === oneList._id &&
-                    styles.selectedListItemText,
+                  styles.listItem,
+                  selectedWishlistId === oneList._id && styles.selectedListItem,
                 ]}
               >
-                {oneList.name}
-              </Text>
-            </TouchableOpacity>
-          ))}
-          <View style={styles.modalButtons}>
-            <TouchableOpacity
-              onPress={() => {
-                if (selectedWishlist) {
-                  addToList();
-                }
-                setModalVisible(false);
-              }}
-              style={styles.addButton}
-            >
-              <Text style={styles.buttonText}>Add</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setModalVisible(false)}
-              style={styles.cancelButton}
-            >
-              <Text style={styles.buttonText}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
+                <Text
+                  style={[
+                    styles.listItemText,
+                    selectedWishlistId === oneList._id &&
+                      styles.selectedListItemText,
+                  ]}
+                >
+                  {oneList.name}
+                </Text>
+              </TouchableOpacity>
+            ))}
+            <View style={[styles.modalButtons, {}]}>
+              <TouchableOpacity
+                onPress={() => {
+                  if (selectedWishlist) {
+                    addToList();
+                  }
+                  setModalVisible(false);
+                }}
+                style={styles.addButton}
+              >
+                <Text style={[styles.buttonText, { color: "white" }]}>Add</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setModalVisible(false)}
+                style={styles.cancelButton}
+              >
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
       </Modal>
     </Screen>
@@ -183,7 +185,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   modalContent: {
-    backgroundColor: "white",
+    backgroundColor: "#FAF7EC",
     padding: 16,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
@@ -193,6 +195,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 16,
+    color: "#8A8B8A",
   },
   listItem: {
     padding: 10,
@@ -214,21 +217,26 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   addButton: {
-    backgroundColor: "green",
-    padding: 10,
+    backgroundColor: "#8A8B8A",
     borderRadius: 8,
     flex: 1,
     marginRight: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 40,
   },
   cancelButton: {
-    backgroundColor: "red",
-    padding: 10,
+    // backgroundColor: "#8A8B8A",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 40,
     borderRadius: 8,
     flex: 1,
     marginLeft: 8,
   },
   buttonText: {
-    color: "white",
+    color: "black",
     textAlign: "center",
     fontSize: 16,
   },

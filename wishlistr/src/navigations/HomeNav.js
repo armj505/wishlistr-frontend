@@ -7,7 +7,7 @@ import { useTheme } from "@react-navigation/native";
 import Title from "../components/ui/Title";
 import { LinearGradient } from "expo-linear-gradient";
 import Search from "../components/ui/Search";
-import ItemDetails from "../screens/wishlist/ItemDetails";
+import ItemDetails from "../screens/wishList/ItemDetails";
 
 const HomeNav = () => {
   const { colors } = useTheme();

@@ -21,7 +21,7 @@ const Explore = () => {
     queryKey: ["categories"],
     queryFn: () => getAllCategories(),
   });
-
+  //
   // const items_ = [
   //   { name: "item 1", _id: 1 },
   //   { name: "item 2", _id: 2 },
@@ -89,20 +89,18 @@ const Explore = () => {
         />
       </>
     ) : (
-      items_?.filter((item) =>
-        item.name
-          .toLowerCase()
-          .includes(query.toLowerCase())
-          .map((item) => (
-            <ItemCard item={item} key={item._id} wishList={true} />
-          ))
-      )
+      brands_
+        ?.filter((item) => {
+          console.log(item);
+          return item.name.toLowerCase().includes(query.toLowerCase());
+        })
+        .map((item) => <ItemCard item={item} key={item._id} wishList={true} />)
     );
   return (
     <Screen>
       {/* <Title title="Explore" /> */}
       <Search setQuery={setQuery} />
-      <ScrollView style={styles.scrollView}>{filteredItems}</ScrollView>
+      <ScrollView style={[styles.scrollView, {}]}>{filteredItems}</ScrollView>
     </Screen>
   );
 };

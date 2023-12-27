@@ -16,7 +16,7 @@ const Home = () => {
   });
   console.log(items_);
   const [expoPushToken, setExpoPushToken] = useState("");
-
+  //
   // itemat = [
   //   {
   //     name: "Laptop Acer",

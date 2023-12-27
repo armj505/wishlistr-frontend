@@ -105,7 +105,9 @@ const BottomSheetModal = () => {
               borderColor: "white",
             }}
           >
-            <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+            <Text
+              style={{ color: "#8a8b8a", fontWeight: "bold", fontSize: 16 }}
+            >
               Change Account Password
             </Text>
           </View>
@@ -122,6 +124,7 @@ const BottomSheetModal = () => {
             <TextInput
               onChangeText={(text) => setCurrentPassword(text)}
               placeholder="Current Password"
+              activeUnderlineColor="#fac260"
               style={{
                 width: "100%",
                 marginTop: 10,
@@ -143,6 +146,7 @@ const BottomSheetModal = () => {
               <TextInput
                 onChangeText={(text) => setNewPassword(text)}
                 placeholder="New Password"
+                activeUnderlineColor="#fac260"
                 style={{
                   width: "100%",
                   marginTop: 10,
@@ -155,9 +159,9 @@ const BottomSheetModal = () => {
               <TouchableOpacity
                 onPress={handleChangePassword}
                 style={{
-                  backgroundColor: "white",
+                  backgroundColor: "#8a8b8a",
                   marginTop: 8,
-                  paddingVertical: 4,
+                  paddingVertical: 10,
                   width: "99%",
                   alignItems: "center",
                   borderRadius: 6,
@@ -187,7 +191,7 @@ const BottomSheetModal = () => {
               }}
               style={{
                 width: "45%",
-                backgroundColor: theme.colors.outline,
+                backgroundColor: "#8a8b8a",
                 justifyContent: "center",
                 alignItems: "center",
                 paddingVertical: 8,
@@ -238,7 +242,7 @@ const styles = StyleSheet.create({
   modalContent: {
     padding: 16,
     height: 500,
-    backgroundColor: "black",
+    backgroundColor: "#FAF7EC",
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },

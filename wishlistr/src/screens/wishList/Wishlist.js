@@ -59,7 +59,7 @@ const Wishlist_ = () => {
   return (
     <Screen>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Title title="Wishlists" />
+        {/* <Title title="Wishlists" /> */}
 
         <View style={styles.iconContainer}>
           <TouchableOpacity></TouchableOpacity>

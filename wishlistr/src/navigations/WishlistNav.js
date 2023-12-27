@@ -3,20 +3,39 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
 
-import Wishlist_ from "../screens/wishlist/Wishlist";
-import SharedWishList from "../screens/wishlist/SharedWishList";
-import WishlistDetails from "../screens/wishlist/WishlistDetails_";
+import Wishlist_ from "../screens/wishList/Wishlist";
+import SharedWishList from "../screens/wishList/SharedWishList";
+import WishlistDetails from "../screens/wishList/WishlistDetails_";
+import { LinearGradient } from "expo-linear-gradient";
+import { useTheme } from "@react-navigation/native";
 
 const WishlistNav = () => {
   const Stack = createStackNavigator();
-
+  const { colors } = useTheme();
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{
+        title: "WishList",
+        headerStyle: { backgroundColor: colors.header, height: 100 },
+        headerMode: "float",
+        headerTitleContainerStyle: { paddingStart: 8 },
+        headerBackground: () => (
+          <LinearGradient
+            style={{ flex: 1 }}
+            colors={[`${colors.primary}`, "#ffffff00"]}
+          />
+        ),
+        headerTitleAlign: "left",
+      }}
+    >
       <Stack.Screen
         name={ROUTES.WISHLIST.WISHLIST.WISHLIST} // Use a simple string for the name
         component={Wishlist_}
       />
       <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
         name={ROUTES.WISHLIST.WISHLIST.WISHLISTDETAILS}
         component={WishlistDetails}
       />
