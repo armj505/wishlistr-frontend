@@ -9,7 +9,7 @@ import { Icon, useTheme } from "react-native-paper";
 import { TextInput } from "react-native-paper";
 import { Button } from "react-native-paper";
 import { Text } from "react-native-paper";
-import giftPic from "../../../assets/gift-128.png";
+import giftPic from "../../../assets/wlR_Main_Logo.png";
 import UserContext from "../../context/UserContext";
 import * as Animatable from "react-native-animatable";
 
@@ -74,8 +74,16 @@ const Login = () => {
           alignItems: "center",
         }}
       >
-        <Animatable.Image source={giftPic} style={{ marginTop: 24 }} />
-        <Animatable.Text
+        <Animatable.Image
+          source={giftPic}
+          style={{
+            marginTop: 24,
+            width: "100%",
+            height: 150,
+            objectFit: "contain",
+          }}
+        />
+        {/* <Animatable.Text
           animation="lightSpeedIn"
           delay={1000}
           style={{
@@ -86,7 +94,7 @@ const Login = () => {
           }}
         >
           WishListr
-        </Animatable.Text>
+        </Animatable.Text> */}
       </Animatable.View>
       <Animatable.View
         animation="bounceInUp"
