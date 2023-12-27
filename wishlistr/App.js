@@ -26,11 +26,10 @@ export default function App() {
     colors: {
       primary: "#edff00",
       background: "#efefef",
+      gradient: "#000",
       header: "#eee",
       card: "#fff",
       text: "#000",
-      border: "rgb(199, 199, 204)",
-      notification: "rgb(255, 69, 58)",
     },
   };
   const DarkMode = {

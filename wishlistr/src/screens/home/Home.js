@@ -10,7 +10,6 @@ import NotificationExample from "../../components/notification/CreateNotificatio
 import NotificationPermission from "../../components/notification/RequestPermissions";
 
 const Home = () => {
-
   const { data: items_ } = useQuery({
     queryKey: ["items"],
     queryFn: () => getAllItems(),
@@ -18,28 +17,32 @@ const Home = () => {
   console.log(items_);
   const [expoPushToken, setExpoPushToken] = useState("");
 
-  itemat = [
-    {
-      name: "something",
-      _id: 1,
-      image: "https://m.media-amazon.com/images/I/81LdJRVFxEL.jpg",
-      price: 24,
-      brand: { name: "acer" },
-    },
-  ];
+  // itemat = [
+  //   {
+  //     name: "Laptop Acer",
+  //     _id: 1,
+  //     image: "https://m.media-amazon.com/images/I/81LdJRVFxEL.jpg",
+  //     price: 24,
+  //     brand: { name: "acer" },
+  //   },
+  //   {
+  //     name: "Laptop Acer",
+  //     _id: 1,
+  //     image: "https://m.media-amazon.com/images/I/81LdJRVFxEL.jpg",
+  //     price: 24,
+  //     brand: { name: "acer" },
+  //   },
+  // ];
 
-  const items = itemat?.map((item) => <ItemCard item={item} key={item._id} />);
-
+  const items = items_?.map((item) => <ItemCard item={item} key={item._id} />);
 
   console.log({ expoPushToken });
   return (
     <Screen>
       <NotificationPermission setExpoPushToken={setExpoPushToken} />
 
-      
       {/* <Title title="WishlistR" align="center" /> */}
       <ScrollView style={styles.scrollView}>{items}</ScrollView>
-
     </Screen>
   );
 };

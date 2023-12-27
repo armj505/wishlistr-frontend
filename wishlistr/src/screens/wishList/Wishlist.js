@@ -13,18 +13,8 @@ import Screen from "../../components/ui/Screen";
 import { ScrollView } from "react-native-gesture-handler";
 import { useQuery } from "@tanstack/react-query";
 import { getAllWishlists } from "../../apis/wishList";
-
-import { Button, Icon } from "react-native-paper";
-import MyModal from "../../components/modal/MyModal";
-import MyEditModal from "../../components/modal/MyEditModal";
-import EditTrashLink from "../../components/editbottomsheet/EditTrashLink";
 import Create from "../../components/editbottomsheet/Create";
-import CreateWishlist from "./CreateWishlist";
-import PrimaryButton from "../../components/ui/PrimaryButton";
 import ROUTES from "../../navigations";
-import WishlistDetails from "./WishlistDetails";
-
-
 
 const Wishlist_ = () => {
   const { colors } = useTheme();
@@ -74,9 +64,7 @@ const Wishlist_ = () => {
   return (
     <Screen>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-
         <Title title="Wishlists" />
-
 
         <View style={styles.iconContainer}>
           <TouchableOpacity></TouchableOpacity>

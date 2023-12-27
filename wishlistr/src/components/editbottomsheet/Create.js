@@ -6,8 +6,7 @@ import { useTheme } from "react-native-paper";
 import UserContext from "../../context/UserContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Toast from "react-native-toast-message";
-import { createList, deleteWishlist } from "../../apis/wishList";
-import CreateWishlist from "../../screens/wishList/CreateWishlist";
+import { createList } from "../../apis/wishList";
 
 const Create = () => {
   const theme = useTheme();

@@ -12,10 +12,6 @@ import { Button, Modal } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import EditTrashLink from "../editbottomsheet/EditTrashLink";
-import { Modalize } from "react-native-modalize";
-import { useQuery } from "@tanstack/react-query";
-import WishlistDetails from "../../screens/wishList/WishlistDetails";
-import { getwishlistdetails } from "../../apis/wishList";
 
 const WishListCard = ({ list }) => {
   // const modalRef = useRef();

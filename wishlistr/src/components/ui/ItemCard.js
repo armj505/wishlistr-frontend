@@ -4,7 +4,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import ROUTES from "../../navigations";
-import { BASE_URL } from "../../apis";
 import { LinearGradient } from "expo-linear-gradient";
 
 const ItemCard = ({ item, wishList }) => {
@@ -22,22 +21,27 @@ const ItemCard = ({ item, wishList }) => {
           console.log("like");
         }}
       >
-        <View
-          style={[styles.container, { backgroundColor: colors.background }]}
-        >
+        <View style={[styles.container, { backgroundColor: colors.card }]}>
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: item?.image }} style={styles.image} />
+          </View>
           <LinearGradient
-            colors={["#00000000", "#fff"]}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <View style={styles.imageContainer}>
-              <Image source={{ uri: item.image }} style={styles.image} />
-            </View>
-            <View style={styles.textContainer}>
-              <Text numberOfLines={1} style={styles.text}>
-                {item.name}
-              </Text>
-            </View>
-          </LinearGradient>
+            colors={[`${colors.gradient}`, "#00000033", "#00000011"]}
+            start={{ x: 0, y: 1 }}
+            end={{ x: 0, y: 0.5 }}
+            style={{
+              width: "100%",
+              height: "100%",
+              zIndex: 9,
+              position: "absolute",
+              // opacity: 1,
+            }}
+          />
+          <View style={styles.textContainer}>
+            <Text numberOfLines={1} style={styles.text}>
+              {item?.name}
+            </Text>
+          </View>
         </View>
       </TouchableOpacity>
       {!wishList ? (
@@ -45,11 +49,16 @@ const ItemCard = ({ item, wishList }) => {
           <Ionicons
             name="heart-outline"
             size={32}
-            color="#eee"
+            color="#ccc"
             style={styles.icon}
           />
         ) : (
-          <Ionicons name="heart" size={32} color="tomato" style={styles.icon} />
+          <Ionicons
+            name="heart"
+            size={32}
+            color={colors.background}
+            style={styles.icon}
+          />
         )
       ) : (
         <></>
@@ -63,7 +72,7 @@ export default ItemCard;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 224,
+    height: 200,
     borderRadius: 16,
     marginBottom: 8,
     overflow: "hidden",
@@ -73,28 +82,31 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    height: 192,
+    height: 200,
     overflow: "hidden",
-    backgroundColor: "white",
-    flex: 1,
+    // backgroundColor: "white",
+    // flex: 1,
     borderRadius: 8,
   },
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
   textContainer: {
-    // flex: 1,
     width: "100%",
+    position: "absolute",
+    bottom: 8,
+    // height: ''
     justifyContent: "center",
     alignSelf: "flex-start",
     paddingStart: 16,
-    height: 32,
+    zIndex: 99,
   },
   text: {
     fontSize: 16,
-    fontWeight: "900",
+    fontWeight: "800",
+    color: "#fff",
   },
   icon: {
     position: "absolute",
