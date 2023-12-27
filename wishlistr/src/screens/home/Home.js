@@ -19,7 +19,14 @@ const Home = () => {
 
   // itemat = [
   //   {
-  //     name: "something",
+  //     name: "Laptop Acer",
+  //     _id: 1,
+  //     image: "https://m.media-amazon.com/images/I/81LdJRVFxEL.jpg",
+  //     price: 24,
+  //     brand: { name: "acer" },
+  //   },
+  //   {
+  //     name: "Laptop Acer",
   //     _id: 1,
   //     image: "https://m.media-amazon.com/images/I/81LdJRVFxEL.jpg",
   //     price: 24,

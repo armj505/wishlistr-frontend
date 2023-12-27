@@ -57,7 +57,7 @@ const ItemDetails = ({ route }) => {
               <Image source={{ uri: item?.image }} style={styles.image} />
             </View>
           </View>
-          <Text style={styles.brandText}>{item?.brand?.name}</Text>
+          <Text style={styles.brandText}>{item?.brand.name}</Text>
           <Text style={styles.itemTitle}>{item?.name}</Text>
           <Text style={styles.itemPrice}>{item?.price} KD</Text>
           <PrimaryButton
@@ -66,7 +66,7 @@ const ItemDetails = ({ route }) => {
           />
           <View style={styles.itemDescriptionContainer}>
             <Text style={styles.productDetailsTitle}>Product Details</Text>
-            <Text style={styles.productDetails}>{item.description}</Text>
+            <Text style={styles.productDetails}>{item?.description}</Text>
           </View>
         </View>
       </ScrollView>

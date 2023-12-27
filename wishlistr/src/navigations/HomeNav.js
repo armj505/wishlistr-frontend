@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
@@ -20,23 +20,13 @@ const HomeNav = () => {
         title: "WishlistR",
         headerStyle: { backgroundColor: colors.header, height: 100 },
         headerMode: "float",
-        headerShadowVisible: false,
         headerTitleContainerStyle: { paddingStart: 8 },
-
-        // headerTintColor: `${colors.text}`,
-        // headerTitleStyle: {
-        //   fontWeight: "800",
-        //   fontSize: 32,
-        // },
-        // headerBackTitle: true,
         headerBackground: () => (
           <LinearGradient
             style={{ flex: 1 }}
             colors={["#edff00ee", "#ffffff00"]}
           />
         ),
-        // headerTransparent: true,
-        // headerBlurEffect: "regular",
         headerTitleAlign: "left",
       }}
     >
