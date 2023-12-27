@@ -10,6 +10,9 @@ import UserContext from "./src/context/UserContext";
 import { PaperProvider } from "react-native-paper";
 import Toast from "react-native-toast-message";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 export default function App() {
   const scheme = useColorScheme();

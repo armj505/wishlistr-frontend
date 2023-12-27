@@ -59,7 +59,7 @@ const WishListCard = ({ list }) => {
             source={
               list.items.length == 0
                 ? giftPic
-                : { uri: list.items[0].item.image }
+                : { uri: list?.items[0]?.item?.image }
             }
             style={[
               styles.image,

@@ -108,7 +108,7 @@ const EditProfile = () => {
             borderRadius: 50,
           }}
         >
-          <Image
+          {/* <Image
             source={plus}
             style={{
               width: 25,
@@ -120,7 +120,7 @@ const EditProfile = () => {
 
               backgroundColor: "gray",
             }}
-          />
+          /> */}
         </TouchableOpacity>
 
         <View
