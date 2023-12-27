@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import Screen from "../../components/ui/Screen";
 import Title from "../../components/ui/Title";
@@ -46,7 +46,11 @@ const ItemDetails = ({ route }) => {
   }
 
   const { item } = route.params;
-
+  if (item) {
+    navigation.setOptions({
+      headerTitle: item.name,
+    });
+  }
   return (
     <Screen>
       <Title title={item?.name} />

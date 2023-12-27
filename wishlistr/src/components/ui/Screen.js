@@ -12,7 +12,7 @@ const Screen = ({ children }) => {
         backgroundColor: colors.background,
         flex: 1,
         // paddingTop: insets.top,
-        // paddingBottom: insets.bottom,
+        paddingBottom: insets.bottom + 80,
         paddingLeft: insets.left + 20,
         paddingRight: insets.right + 20,
         // paddingHorizontal: 16,

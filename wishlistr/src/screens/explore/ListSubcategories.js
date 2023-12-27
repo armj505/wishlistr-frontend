@@ -12,9 +12,10 @@ const ListSubcategories = ({ route }) => {
     <Screen>
       <Title title={tag.name} />
       <SectionCard
-        data={tag.subcat}
+        data={tag.subCategories}
         routeName={ROUTES.EXPLORE.EXPLORE.SUBCATEGORIES}
         viewMore={false}
+        text={true}
       />
     </Screen>
   );

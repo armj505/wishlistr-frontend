@@ -11,68 +11,72 @@ import ROUTES from "../../navigations";
 import ItemCard from "../../components/ui/ItemCard";
 
 const Explore = () => {
-  // const { data: brands_ } = useQuery({
-  //   queryKey: ["brands"],
-  //   queryFn: () => getAllBrands(),
-  // });
+  const { data: brands_ } = useQuery({
+    queryKey: ["brands"],
+    queryFn: () => getAllBrands(),
+  });
+  console.log(brands_);
+  //
+  const { data: categories_ } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => getAllCategories(),
+  });
 
-  // const { data: categories_ } = useQuery({
-  //   queryKey: ["categories"],
-  //   queryFn: () => getAllCategories(),
-  // });
+  // const items_ = [
+  //   { name: "item 1", _id: 1 },
+  //   { name: "item 2", _id: 2 },
+  //   { name: "jacket", _id: 3 },
+  //   { name: "something", _id: 4 },
+  // ];
 
-  const items_ = [
-    { name: "item 1", _id: 1 },
-    { name: "item 2", _id: 2 },
-    { name: "jacket", _id: 3 },
-    { name: "something", _id: 4 },
-  ];
-  console.log(items_[0]);
-  const brands_ = [
-    { name: "brand 1", _id: 1 },
-    { name: "brand 2", _id: 2 },
-    { name: "brand 3", _id: 3 },
-    { name: "brand 4", _id: 4 },
-    { name: "brand 5", _id: 5 },
-    { name: "brand 6", _id: 6 },
-  ];
-  const categories_ = [
-    {
-      name: "cat 1",
-      _id: 1,
-      subcat: [
-        { name: "cat 1a", _id: 1 },
-        { name: "cat 1b", _id: 2 },
-        { name: "cat 1c", _id: 3 },
-      ],
-    },
-    {
-      name: "cat 2",
-      _id: 2,
-      subcat: [
-        { name: "cat 2a", _id: 1 },
-        { name: "cat 2b", _id: 2 },
-        { name: "cat 2c", _id: 3 },
-      ],
-    },
-    {
-      name: "cat 3",
-      _id: 3,
-      subcat: [
-        { name: "cat 3a", _id: 1 },
-        { name: "cat 3b", _id: 2 },
-        { name: "cat 3c", _id: 3 },
-      ],
-    },
-  ];
+  // const brands_ = [
+  //   { name: "brand 1", _id: 1 },
+  //   { name: "brand 2", _id: 2 },
+  //   { name: "brand 3", _id: 3 },
+  //   { name: "brand 4", _id: 4 },
+  //   { name: "brand 5", _id: 5 },
+  //   { name: "brand 6", _id: 6 },
+  // ];
+  // const categories_ = [
+  //   {
+  //     name: "cat 1",
+  //     _id: 1,
+  //     subcat: [
+  //       { name: "cat 1a", _id: 1 },
+  //       { name: "cat 1b", _id: 2 },
+  //       { name: "cat 1c", _id: 3 },
+  //     ],
+  //   },
+  //   {
+  //     name: "cat 2",
+  //     _id: 2,
+  //     subcat: [
+  //       { name: "cat 2a", _id: 1 },
+  //       { name: "cat 2b", _id: 2 },
+  //       { name: "cat 2c", _id: 3 },
+  //     ],
+  //   },
+  //   {
+  //     name: "cat 3",
+  //     _id: 3,
+  //     subcat: [
+  //       { name: "cat 3a", _id: 1 },
+  //       { name: "cat 3b", _id: 2 },
+  //       { name: "cat 3c", _id: 3 },
+  //     ],
+  //   },
+  // ];
   const [query, setQuery] = useState("");
+
+  const brandsSlice = brands_?.slice(0, 6);
+  console.log(brandsSlice);
 
   const filteredItems =
     query === "" ? (
       <>
         <SectionCard
           title="Brands"
-          data={brands_}
+          data={brandsSlice}
           routeName={ROUTES.EXPLORE.EXPLORE.BRAND}
           viewMore={true}
         />
@@ -81,6 +85,7 @@ const Explore = () => {
           data={categories_}
           routeName={ROUTES.EXPLORE.EXPLORE.LISTSUBCATEGORIES}
           viewMore={false}
+          text={true}
         />
       </>
     ) : (

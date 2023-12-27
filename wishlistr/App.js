@@ -24,18 +24,20 @@ export default function App() {
   const LightMode = {
     dark: false,
     colors: {
-      primary: "#edff00",
-      background: "#efefef",
-      gradient: "#000",
+      primary: "#fac260",
+      background: "#faf7ec",
+      gradient: "#fac260",
       header: "#eee",
       card: "#fff",
       text: "#000",
+      textMainBar: "#fff",
+      textMainBackground: "#8a8b8a",
     },
   };
   const DarkMode = {
     dark: true,
     colors: {
-      primary: "#edff00",
+      primary: "#ffcc00",
       background: "#000",
       header: "#03031a",
       card: "#202020",

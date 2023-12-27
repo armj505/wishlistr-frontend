@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigations";
 
-const SectionCard = ({ title, data, routeName, viewMore }) => {
+const SectionCard = ({ title, data, routeName, text, viewMore }) => {
   const navigation = useNavigation();
   const cardList = data;
   const dataCards = cardList?.map((tag) => (
@@ -14,6 +14,7 @@ const SectionCard = ({ title, data, routeName, viewMore }) => {
       key={tag._id}
       routeName={routeName}
       param={{ tag: tag }}
+      text={text}
     />
   ));
   return (
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     fontSize: 24,
     fontWeight: "800",
-    color: "white",
     paddingStart: 16,
     paddingBottom: 8,
     paddingTop: 16,

@@ -1,11 +1,23 @@
 import { StyleSheet, Text, Touchable, View } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useTheme } from "@react-navigation/native";
 
 const PrimaryButton = ({ name, press }) => {
+  const { colors } = useTheme();
   return (
     <TouchableOpacity onPress={press}>
-      <View style={styles.container}>
+      <View
+        style={{
+          backgroundColor: colors.primary,
+          width: "100%",
+          height: "auto",
+          padding: 16,
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 8,
+        }}
+      >
         <Text style={styles.text}>{name}</Text>
       </View>
     </TouchableOpacity>
@@ -15,15 +27,6 @@ const PrimaryButton = ({ name, press }) => {
 export default PrimaryButton;
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "auto",
-    backgroundColor: "#edff00",
-    padding: 16,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   text: {
     fontSize: 16,
     fontWeight: "600",

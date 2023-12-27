@@ -5,7 +5,7 @@ import ROUTES from ".";
 
 import Wishlist_ from "../screens/wishlist/Wishlist";
 import SharedWishList from "../screens/wishlist/SharedWishList";
-import WishListDetails from "../screens/wishlist/WishlistDetails";
+import WishlistDetails from "../screens/wishlist/WishlistDetails_";
 
 const WishlistNav = () => {
   const Stack = createStackNavigator();

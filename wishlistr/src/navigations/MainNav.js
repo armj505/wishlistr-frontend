@@ -18,9 +18,9 @@ const MainNav = () => {
       screenOptions={{ headerShown: false }}
       initialRouteName={ROUTES.HOME.HOME_NAVIGATOR}
       tabBarOptions={{
-        activeTintColor: colors.text,
+        activeTintColor: colors.textMainBar,
         inactiveTintColor: "#fff",
-        activeBackgroundColor: colors.primary,
+        activeBackgroundColor: colors.textMainBackground,
       }}
       appearance={{
         shadow: true,

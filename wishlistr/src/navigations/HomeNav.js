@@ -24,7 +24,7 @@ const HomeNav = () => {
         headerBackground: () => (
           <LinearGradient
             style={{ flex: 1 }}
-            colors={["#edff00ee", "#ffffff00"]}
+            colors={[`${colors.primary}`, "#ffffff00"]}
           />
         ),
         headerTitleAlign: "left",
@@ -34,7 +34,7 @@ const HomeNav = () => {
       <Stack.Screen
         name={ROUTES.WISHLIST.WISHLIST.ITEM}
         component={ItemDetails}
-        options={{ title: ROUTES.WISHLIST.WISHLIST.ITEM }}
+        options={({ route }) => ({ title: route.params.name })}
       />
     </Stack.Navigator>
   );

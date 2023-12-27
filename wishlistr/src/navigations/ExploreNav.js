@@ -31,7 +31,7 @@ const ExploreNav = () => {
         headerBackground: () => (
           <LinearGradient
             style={{ flex: 1 }}
-            colors={["#edff00ee", "#ffffff00"]}
+            colors={[`${colors.primary}`, "#ffffff00"]}
           />
         ),
         // headerTransparent: true,

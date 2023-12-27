@@ -14,8 +14,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import EditTrashLink from "../editbottomsheet/EditTrashLink";
 import { Modalize } from "react-native-modalize";
 import { useQuery } from "@tanstack/react-query";
-import WishlistDetails from "../../screens/wishlist/WishlistDetails";
 import { getwishlistdetails } from "../../apis/wishList";
+import WishlistDetails from "../../screens/wishlist/WishlistDetails_";
 
 const WishListCard = ({ list }) => {
   // const modalRef = useRef();

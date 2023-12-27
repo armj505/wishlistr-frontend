@@ -14,7 +14,9 @@ const ItemCard = ({ item, wishList }) => {
     <View>
       <TouchableOpacity
         onPress={() => {
-          navigation.push(ROUTES.WISHLIST.WISHLIST.ITEM, { item: item });
+          navigation.push(ROUTES.WISHLIST.WISHLIST.ITEM, {
+            item: item,
+          });
         }}
         onLongPress={() => {
           setIsAdded(!isAdded);
@@ -26,7 +28,7 @@ const ItemCard = ({ item, wishList }) => {
             <Image source={{ uri: item?.image }} style={styles.image} />
           </View>
           <LinearGradient
-            colors={[`${colors.gradient}`, "#00000033", "#00000011"]}
+            colors={[`${colors.gradient}`, "#8a8b8a33", "#00000011"]}
             start={{ x: 0, y: 1 }}
             end={{ x: 0, y: 0.5 }}
             style={{
@@ -49,14 +51,14 @@ const ItemCard = ({ item, wishList }) => {
           <Ionicons
             name="heart-outline"
             size={32}
-            color="#ccc"
+            color="#88888888"
             style={styles.icon}
           />
         ) : (
           <Ionicons
             name="heart"
             size={32}
-            color={colors.background}
+            color="#88888888"
             style={styles.icon}
           />
         )
