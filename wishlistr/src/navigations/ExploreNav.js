@@ -9,19 +9,34 @@ import Trend from "../screens/explore/Trend";
 import ROUTES from ".";
 import Brand from "../screens/explore/Brand";
 import { useTheme } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
 const ExploreNav = () => {
   const { colors } = useTheme();
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: colors.header },
-        headerTintColor: `${colors.text}`,
-        headerTitleStyle: {
-          fontWeight: "800",
-          fontSize: 32,
-        },
-        headerBackTitle: true,
+        title: "",
+        headerStyle: { backgroundColor: colors.header, height: 100 },
+        headerMode: "float",
+        headerShadowVisible: false,
+        headerTitleContainerStyle: { paddingStart: 8 },
+
+        // headerTintColor: `${colors.text}`,
+        // headerTitleStyle: {
+        //   fontWeight: "800",
+        //   fontSize: 32,
+        // },
+        // headerBackTitle: true,
+        headerBackground: () => (
+          <LinearGradient
+            style={{ flex: 1 }}
+            colors={["#edff00ee", "#ffffff00"]}
+          />
+        ),
+        // headerTransparent: true,
+        // headerBlurEffect: "regular",
+        headerTitleAlign: "left",
       }}
     >
       <Stack.Screen name={ROUTES.EXPLORE.EXPLORE.EXPLORE} component={Explore} />

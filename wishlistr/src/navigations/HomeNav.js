@@ -3,11 +3,11 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
 import Home from "../screens/home/Home";
-import ItemDetails from "../screens/wishList/ItemDetails";
 import { useTheme } from "@react-navigation/native";
 import Title from "../components/ui/Title";
 import { LinearGradient } from "expo-linear-gradient";
 import Search from "../components/ui/Search";
+import ItemDetails from "../screens/wishlist/ItemDetails";
 
 const HomeNav = () => {
   const { colors } = useTheme();
