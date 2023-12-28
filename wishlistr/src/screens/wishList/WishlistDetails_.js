@@ -115,7 +115,7 @@ const WishlistDetails = () => {
   const handleShare = () => {
     closeMenu();
 
-    const deepLink = `https://hammerhead-app-kz3f9.ondigitalocean.app/SharedWishList/${wishlistId}`;
+    const deepLink = `https://658cce49b2ce135707fe5f9c--vermillion-mermaid-7c1ff0.netlify.app/SharedWishList/${wishlistId}`;
     const shareMessage = `Check out my wishlist: ${deepLink}`;
 
     Share.share({
